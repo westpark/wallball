@@ -6,9 +6,11 @@ class Ball(ZRect): pass
 # The ball is a square red block which starts in the middle
 # of the screen moving towards the lower-right.
 #
-ball = Ball(WIDTH / 2, HEIGHT / 2, 30, 30)
+BALL_W = 30
+BALL_H = BALL_W
+ball = Ball(WIDTH / 2, HEIGHT / 2, BALL_W, BALL_H)
 ball.direction = 1, 1
-ball.speed = 5
+ball.speed = 1
 ball.colour = "red"
 
 class Bat(ZRect): pass
@@ -16,7 +18,9 @@ class Bat(ZRect): pass
 # The bat is a green oblong which starts just above the bottom
 # of the screen and halfway across.
 #
-bat = Bat(WIDTH / 2, 0.96 * HEIGHT, 150, 15)
+BAT_W = 150
+BAT_H = 15
+bat = Bat(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
 bat.colour = "green"
 
 N_BLOCKS = 8
