@@ -1,3 +1,8 @@
+.. Wall Ball documentation master file, created by
+   sphinx-quickstart on Tue Nov  1 18:18:39 2016.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
 Introduction
 ============
 
@@ -107,15 +112,17 @@ it from a Terminal window by typing `pgzrun wallball.py`.
 
 You can always quit a PyGame Zero game by pressing Ctrl+Q.
 
+Steps
+=====
 
 Step 1: Create an empty game
-============================
+----------------------------
 
 In this step we're going to create a game which does nothing, just to make
 sure we have everything ready to run.
 
 The Code
---------
+~~~~~~~~
 
 ::
 
@@ -123,7 +130,7 @@ That's it. You just need an empty file. That's the simplest possible "game"
 you can build with PyGame Zero. 
 
 Change it around
-----------------
+~~~~~~~~~~~~~~~~
 
 Although all you have is an empty screen with nothing moving on it,
 you can still change a few things. If you want to change the size of
@@ -132,14 +139,14 @@ the game window, add the following lines to the top of your program::
     WIDTH = 640
     HEIGHT = 480
 
-and if you want to give the game window a title, add this line:
+and if you want to give the game window a title, add this line::
 
     TITLE = "Wall Ball"
 
 Obviously you can choose your own size and your own title.
 
 What's happening here?
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 In fact, PyGame Zero is doing a lot of work on your behalf. If this
 were a "real" PyGame program, in order to get a window which did nothing
@@ -167,3 +174,8 @@ which PyGame Zero doesn't provide and which PyGame itself does and then
 you'll start to write code directly in PyGame. PyGame Zero is deliberately
 limited.
 
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
