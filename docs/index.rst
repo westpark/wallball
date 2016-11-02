@@ -1,181 +1,21 @@
 .. Wall Ball documentation master file, created by
-   sphinx-quickstart on Tue Nov  1 18:18:39 2016.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-Introduction
-============
-
-How does a computer game work?
-------------------------------
-
-How does any computer game work? It works by drawing on a screen and then rubbing things
-out and drawing them differently and doing this lots of times every second, so fast that
-you don't realise it's happening: all you see is images apparently moving over the screen.
-
-It's the same effect as you get if you draw a slightly different picture on the edge
-of each of a sheaf of papers and then flick through them really fast: you see the figure 
-change from the beginning to the end.
-
-It's also the same as doing stop-motion animation which you can do easily with a phone
-camera and Lego or Plasticine: you take individual pictures and change the figures in
-between each picture. At the end you use a computer program to stitch all the pictures
-together making the characters move fluidly.
-
-But a computer can do it more quickly and more smoothly than you can and with lots of things at once.
-
-What game are we going to build?
---------------------------------
-
-We're going to build a game which I've called "Wall Ball". It's a simple clone of a
-game called "Breakout" which was popular in the early days of computer games. 
-
-There's
-a wall of bricks along the top of the game, a ball which bounces off the sides of the 
-game and knocks out bricks, and a bat, controlled by the player's mouse, which stops the ball 
-falling off the bottom of the game. If all the bricks are knocked out, the player wins.
-If the ball falls off the bottom of the screen, the player loses.
-
-What tools are we going to use?
--------------------------------
-
-We'll be using the programming language Python plus some extra libraries. Python is a
-simple but powerful language. It's text-based (not like Scratch or Blockly)
-so you have to write words to make the program do something. But once you learn the basic
-structures it's easy to put things together.
-
-To help with the gameplay -- drawing things and responding to mouse movements -- we're using
-a library called PyGame Zero. This library makes it easier to get going with a game. It sits
-on top of a more powerful library called PyGame.
-
-All of these tools will run on Raspberry Pi, on Windows, on Mac, on Linux in general and on 
-other platforms.
-
-Setting Up
+Background
 ==========
 
-Before we start programming, we need to make sure everything's in place for us to write
-our code and run it.
-
-Create a working directory
---------------------------
-
-* Run a terminal prompt
-
-* If there isn't one, create a directory called `work-in-progress`
-
-* Inside that directory, create a directory called `wallball`
-
-* Type: `which pgzrun`
-
-Create an empty file
---------------------
-
-* Start IDLE3
-
-* Dismiss the Interpreter window
-
-* File > Save As > ~/work-in-progress/wallball/wallball.py
-
-Writing the Game
-================
-
-We're going to write the program in four stages, some of which are broken into smaller stages:
-
-1) Create an empty game
-
-2) Get a ball to bounce around the screen
-
-3) Create a bat controlled by the user which the ball will bounce off
-
-4) Create bricks which the ball will knock out
-
-At each of the steps you'll be told what code to write. But there will also be suggestions to
-change things around, to try things out.
-
-Also, at each stage, there will be an explanation of some the things which 
-are happening, to help you understand what your code is doing.
-
-At the very end, there will be suggestions for how to extend the whole game, 
-to add extra elements or make things more difficult or more interesting.
-
-Running the Game
-================
-
-Because we're using PyGame Zero to build our game, we'll have to run it
-with PyGame Zero's special runner, called `pgzrun`. If you've written Python
-before, using IDLE or another editor, this is different from what you'd
-normally do.
-
-You write your game in an editor (IDLE or another one) and then you run
-it from a Terminal window by typing `pgzrun wallball.py`.
-
-You can always quit a PyGame Zero game by pressing Ctrl+Q.
-
-Steps
-=====
-
-Step 1: Create an empty game
-----------------------------
-
-In this step we're going to create a game which does nothing, just to make
-sure we have everything ready to run.
-
-The Code
-~~~~~~~~
-
-::
-
-That's it. You just need an empty file. That's the simplest possible "game"
-you can build with PyGame Zero. 
-
-Change it around
-~~~~~~~~~~~~~~~~
-
-Although all you have is an empty screen with nothing moving on it,
-you can still change a few things. If you want to change the size of
-the game window, add the following lines to the top of your program::
-
-    WIDTH = 640
-    HEIGHT = 480
-
-and if you want to give the game window a title, add this line::
-
-    TITLE = "Wall Ball"
-
-Obviously you can choose your own size and your own title.
-
-What's happening here?
-~~~~~~~~~~~~~~~~~~~~~~
-
-In fact, PyGame Zero is doing a lot of work on your behalf. If this
-were a "real" PyGame program, in order to get a window which did nothing
-and which closed when you pressed Ctrl+Q, this is what you'd have to write::
-
-    import pygame
-
-    pygame.init()
-
-    size = 800, 600
-    screen = pygame.display.set_mode(size)
-
-    clock = pygame.time.Clock()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_q:
-                sys.exit()
-
-        screen.fill(pygame.Color("black"))
-        pygame.display.flip()
-        clock.tick(60)
-
-That's just to get the game to do nothing! Eventually you'll need something
-which PyGame Zero doesn't provide and which PyGame itself does and then
-you'll start to write code directly in PyGame. PyGame Zero is deliberately
-limited.
-
+We're going to build a simple computer game which I've called "Wall Ball".
+The code is broken out into simple steps, each of which adds something
+to the program until the entire game is possible. At each step you can
+change things around and when the game is complete you can make other
+changes to make the game harder or more interesting.
 
 Contents:
 
-.. toctree::
-   :maxdepth: 2
+..  toctree::
+    :maxdepth: 2
+    :glob:
+
+    introduction
+    overview
+    setting_up
+    steps/*
