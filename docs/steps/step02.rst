@@ -1,13 +1,18 @@
-Step 1: Create an empty game
-----------------------------
+Step 1: Put a ball on the screen
+================================
 
-In this step we're going to create a game which does nothing, just to make
-sure we have everything ready to run.
+In this step we're going to put a square "ball" on the screen and
+then to make it move, bouncing off each of the walls when it hits them.
+
+Step 1a: Put a ball on the screen
+---------------------------------
 
 The Code
 ~~~~~~~~
 
 ::
+
+    
 
 That's it. You just need an empty file. That's the simplest possible "game"
 you can build with PyGame Zero. 
