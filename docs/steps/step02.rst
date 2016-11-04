@@ -20,7 +20,7 @@ What's happening?
   When you create a PyGame rectangle object, you give it four numbers: x, y, w, h
   
   *NB Although the first two numbers are using the `WIDTH` & `HEIGHT` constants, they
-  represent the x, y position of the ball`.
+  represent the x, y position of the ball`*.
 
 * The `draw` function is a special function which PyGame Zero calls to show whatever
   needs to be there on the game screen. In this case, we just clear the screen every
