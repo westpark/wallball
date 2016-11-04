@@ -20,3 +20,4 @@ Contents:
     setting_up
     steps/*
     change-it-all-around
+    pygame-zero
