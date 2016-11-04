@@ -9,8 +9,6 @@ to the program until the entire game is possible. At each step you can
 change things around and when the game is complete you can make other
 changes to make the game harder or more interesting.
 
-Contents:
-
 ..  toctree::
     :maxdepth: 2
     :glob:
