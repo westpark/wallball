@@ -14,6 +14,12 @@ The Code
 
 .. literalinclude:: code/s4a.py
 
+Change it around
+~~~~~~~~~~~~~~~~
+
+* Change the colour of the brick
+* Make the brick appear at the right of the screen
+
 Step 4b: Put eight bricks across the screen
 -------------------------------------------
 
@@ -22,6 +28,14 @@ The Code
 
 .. literalinclude:: code/s4b.py
 
+Change it around
+~~~~~~~~~~~~~~~~
+
+* Change the number of bricks
+* Change how high each brick is
+* Add or remove some colours
+* Make each brick a randomly-chosen colour
+
 Step 4c: Have the ball knock out bricks until none is left
 ----------------------------------------------------------
 
@@ -29,4 +43,9 @@ The Code
 ~~~~~~~~
 
 .. literalinclude:: code/s4c.py
+
+Change it around
+~~~~~~~~~~~~~~~~
+
+* Have the ball change colour according to which brick it's knocked out
 

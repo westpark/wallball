@@ -19,3 +19,4 @@ Contents:
     overview
     setting_up
     steps/*
+    change-it-all-around
