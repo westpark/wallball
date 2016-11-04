@@ -1,7 +1,7 @@
 .. Wall Ball documentation master file, created by
 
-Background
-==========
+Wall Ball
+=========
 
 We're going to build a simple computer game which I've called "Wall Ball".
 The code is broken out into simple steps, each of which adds something
