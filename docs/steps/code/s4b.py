@@ -3,7 +3,7 @@ HEIGHT = 480
 
 class Ball(ZRect): pass
 #
-# The ball is a square red brick halfway across the game screen
+# The ball is a red square halfway across the game screen
 #
 ball = Ball(WIDTH / 2, HEIGHT / 2, 30, 30)
 ball.colour = "red"
