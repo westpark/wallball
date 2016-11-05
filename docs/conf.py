@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# WallBall documentation build configuration file, created by
-# sphinx-quickstart on Sat Oct 15 13:58:27 2016.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -49,9 +47,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'WallBall'
-copyright = '2016, Westpark Club'
-author = 'Westpark Club'
+project = 'Wall Ball'
+copyright = '2016, Tim Golden'
+author = 'Tim Golden'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -120,13 +118,15 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'bizstyle'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 #
-# html_theme_options = {}
+html_theme_options = {
+    "rightsidebar" : True
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 # html_theme_path = []
@@ -134,7 +134,7 @@ html_theme = 'alabaster'
 # The name for this set of Sphinx documents.
 # "<project> v<release> documentation" by default.
 #
-# html_title = 'WallBall v1.0'
+# html_title = 'Wall Ball v1.0'
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #
@@ -260,8 +260,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'WallBall.tex', 'WallBall Documentation',
-     'Westpark Club', 'manual'),
+    (master_doc, 'WallBall.tex', 'Wall Ball Documentation',
+     'Tim Golden', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -302,7 +302,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'wallball', 'WallBall Documentation',
+    (master_doc, 'wallball', 'Wall Ball Documentation',
      [author], 1)
 ]
 
@@ -317,7 +317,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'WallBall', 'WallBall Documentation',
+    (master_doc, 'WallBall', 'Wall Ball Documentation',
      author, 'WallBall', 'One line description of project.',
      'Miscellaneous'),
 ]
