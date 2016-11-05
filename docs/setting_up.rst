@@ -9,7 +9,7 @@ Create a working directory
 
 * Run a terminal prompt
 
-* If there isn't one, create a directory called `work-in-progress`
+* If there isn't one, create a directory called `work`
 
 * Inside that directory, create a directory called `wallball`
 
@@ -22,5 +22,6 @@ Create an empty file
 
 * Dismiss the Interpreter window
 
-* File > Save As > ~/work-in-progress/wallball/wallball.py
+* File > Save As > ~/work/wallball/<name>.py
+  (Don't actually put "<name>"; put your name in)
 

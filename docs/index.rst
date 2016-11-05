@@ -9,6 +9,13 @@ to the program until the entire game is possible. At each step you can
 change things around and when the game is complete you can make other
 changes to make the game harder or more interesting.
 
+The aim *isn't* for you to end up with a computer game! If that's all you
+want, you can go home and find a thousand games better than this one. The
+aim is for you to make simple game which you can then make your own. No-one
+else's game will have the particular ideas which your's has. Make it yours.
+
+
+
 ..  toctree::
     :maxdepth: 2
     :glob:
