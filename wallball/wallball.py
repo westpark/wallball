@@ -1,5 +1,5 @@
-WIDTH = 800
-HEIGHT = 600
+WIDTH = 640
+HEIGHT = 480
 
 class Ball(ZRect): pass
 #
@@ -10,7 +10,7 @@ BALL_W = 30
 BALL_H = BALL_W
 ball = Ball(WIDTH / 2, HEIGHT / 2, BALL_W, BALL_H)
 ball.direction = 1, 1
-ball.speed = 1
+ball.speed = 3
 ball.colour = "red"
 
 class Bat(ZRect): pass
