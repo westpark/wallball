@@ -498,3 +498,11 @@ only screen and (min-device-pixel-ratio: 2) {
 }
 
 /* -- end ------------------------------------------------------------------- */
+
+/* -- additions for dojo -- */
+
+.highlight .hll {
+    border : 1px dotted red;
+}
+
+/* -- end additions for dojo -- */
