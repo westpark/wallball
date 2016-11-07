@@ -26,6 +26,20 @@ BAT_H = 15
 bat = Bat(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
 bat.colour = "green"
 
+class Brick(ZRect): pass
+#
+# The brick is a rectangle one eight the width of the game screen
+# and one quarter high as it is wide.
+#
+N_BRICKS = 8
+BRICK_W = WIDTH / N_BRICKS
+BRICK_H = BRICK_W / 4
+#
+# Create just one brick for now, at the top left of othe screen
+#
+brick = Brick(0, 0, BRICK_W, BRICK_H)
+brick.colour = "blue"
+
 def draw():
     #
     # Clear the screen and place the ball at its current position
@@ -33,6 +47,14 @@ def draw():
     screen.clear()
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
+    screen.draw.filled_rect(brick, brick.colour)
+
+def on_mouse_move(pos):
+    #
+    # Make the bat follow the horizontal movement of the mouse.
+    #
+    x, y = pos
+    bat.centrex = x
 
 def update():
     #
@@ -42,15 +64,25 @@ def update():
     ball.move_ip(ball.speed * dx, ball.speed * dy)
 
     #
+    # Bounce the ball off the bat
+    #
+    if ball.colliderect(bat):
+        ball.direction = dx, -dy
+
+    #
     # Bounce the ball off the left or right walls
     #
     if ball.right >= WIDTH or ball.left <= 0:
         ball.direction = -dx, dy
 
     #
-    # Bounce the ball off the top or bottom walls
-    # (We'll remove this later when the bat and the
-    # bricks are in place)
+    # If the ball hits the bottom of the screen, you lose
     #
-    if ball.bottom >= HEIGHT or ball.top <= 0:
+    if ball.bottom >= HEIGHT:
+        exit()
+    
+    #
+    # Bounce the ball off the top wall
+    #
+    if ball.top <= 0:
         ball.direction = dx, -dy

@@ -16,12 +16,30 @@ ball.direction = 1, 1
 #
 ball.speed = 3
 
+class Bat(ZRect): pass
+#
+# The bat is a green oblong which starts just along the bottom
+# of the screen and halfway across.
+#
+BAT_W = 150
+BAT_H = 15
+bat = Bat(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
+bat.colour = "green"
+
 def draw():
     #
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
     screen.draw.filled_rect(ball, ball.colour)
+    screen.draw.filled_rect(bat, bat.colour)
+
+def on_mouse_move(pos):
+    #
+    # Make the bat follow the horizontal movement of the mouse.
+    #
+    x, y = pos
+    bat.centrex = x
 
 def update():
     #
@@ -29,6 +47,12 @@ def update():
     #
     dx, dy = ball.direction
     ball.move_ip(ball.speed * dx, ball.speed * dy)
+
+    #
+    # Bounce the ball off the bat
+    #
+    if ball.colliderect(bat):
+        ball.direction = dx, -dy
 
     #
     # Bounce the ball off the left or right walls

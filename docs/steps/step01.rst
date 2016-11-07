@@ -1,59 +1,84 @@
-Step 1: Create an empty game
-----------------------------
+Step 2: Bounce a ball around the screen
+=======================================
 
-In this step we're going to create a game which does nothing, just to make
-sure we have everything ready to run.
+In this step we're going to put a square "ball" on the screen and
+then to make it move, bouncing off each of the walls when it hits them.
+
+Step 2a: Put a ball on the screen
+---------------------------------
 
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s1.py
+.. literalinclude:: code/s2a.py
 
-That's it. You just need an empty file. That's the simplest possible "game"
-you can build with PyGame Zero. 
+What's happening?
+~~~~~~~~~~~~~~~~~
 
-What's happening here?
-~~~~~~~~~~~~~~~~~~~~~~
+* A `Ball` is a PyGame Zero rectangle object. Its position is centred on the size of the
+  game window: if the window is made bigger, the ball will still be in the middle.
+  When you create a PyGame rectangle object, you give it four numbers: x, y, w, h
+  
+  *NB Although the first two numbers are using the `WIDTH` & `HEIGHT` constants, they
+  represent the x, y position of the ball`*.
 
-In fact, PyGame Zero is doing a lot of work on your behalf. If this
-were a "real" PyGame program, in order to get a window which did nothing
-and which closed when you pressed Ctrl+Q, this is what you'd have to write::
-
-    import pygame
-
-    pygame.init()
-
-    size = 800, 600
-    screen = pygame.display.set_mode(size)
-
-    clock = pygame.time.Clock()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_q:
-                sys.exit()
-
-        screen.fill(pygame.Color("black"))
-        pygame.display.flip()
-        clock.tick(60)
-
-That's just to get the game to do nothing! Eventually you'll need something
-which PyGame Zero doesn't provide and which PyGame itself does and then
-you'll start to write code directly in PyGame. PyGame Zero is deliberately
-limited.
+* The `draw` function is a special function which PyGame Zero calls to show whatever
+  needs to be there on the game screen. In this case, we just clear the screen every
+  time and draw the ball.
 
 Change it around
 ~~~~~~~~~~~~~~~~
 
-Although all you have is an empty screen with nothing moving on it,
-you can still change a few things. If you want to change the size of
-the game window, add the following lines to the top of your program::
+* Change the colour of the ball
+* Change the size of the ball
+* Change where the ball appears
+* Have the ball appear somewhere different every time
 
-    WIDTH = 640
-    HEIGHT = 480
+Step 2b: Make the ball move
+---------------------------
 
-and if you want to give the game window a title, add this line::
+The Code
+~~~~~~~~
 
-    TITLE = "Wall Ball"
+.. literalinclude:: code/s2b.py
 
-Obviously you can choose your own size and your own title.
+What's happening?
+~~~~~~~~~~~~~~~~~
 
+* We give the ball a direction and a speed (like a Vector, if you know what that is).
+
+* The `update` function is the other function which is called by PyGame Zero on
+  every tick of its clock: it's where we calculate how much our different objects
+  have moved. You don't put anything on the screen in the `update` function, only
+  in the `draw` function.
+  
+* `ball.move_ip` tells PyGame to change the position of the ball rectangle by
+  the requested amount.
+
+Change it around
+~~~~~~~~~~~~~~~~
+
+* Make the ball move faster or slower
+* Change the angle at which the ball moves
+
+Step 2c: Make the ball bounce off the walls
+-------------------------------------------
+
+The Code
+~~~~~~~~
+
+.. literalinclude:: code/s2c.py
+
+What's happening?
+~~~~~~~~~~~~~~~~~
+
+* When the edge of the ball reaches the left or right-hand edge of the screen, we
+  change its horizontal direction only so it appears to bounce back off the wall.
+  
+* When the edge of the ball reaches the top or bottom edge of the screen, we
+  change its vertical direction only.
+
+Change it around
+~~~~~~~~~~~~~~~~
+
+* Make the ball bounce differently on different walls

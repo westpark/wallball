@@ -1,66 +1,51 @@
-Step 3: Make the ball bounce off the bat
-========================================
+Step 4: Add bricks for the ball to knock out
+============================================
 
-In this step we're going to put an oblong "bat" along the bottom of the
-screen. It will move left and right when the player moves the mouse.
-When the ball hits the bat it will bounce off it.
+In this step we're going to put a row of "bricks" along the top of the
+game screen, each one a different colour. When the ball hits a brick,
+the brick disappears. When all the bricks have been knocked out, the
+player has won.
 
-Finally, now that we have a bat in place, the player will die if the ball
-reaches the bottom edge of the screen.
-
-Step 3a: Put a bat on the screen
---------------------------------
+Step 4a: Put one brick on the screen
+------------------------------------
 
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3a.py
+.. literalinclude:: code/s4a.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
 
-* Change the colour of the bat
-* Change the size of the bat
-* Change where the bat starts
+* Change the colour of the brick
+* Make the brick appear at the right of the screen
 
-Step 3b: Control the bat with the mouse
----------------------------------------
+Step 4b: Put eight bricks across the screen
+-------------------------------------------
 
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3b.py
+.. literalinclude:: code/s4b.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
 
-* Make the bat move left & right according to the up and down movement of the mouse
-* Make the bat move up and down as well as left and right
-* Make the bat move only when one of the buttons is pressed
+* Change the number of bricks
+* Change how high each brick is
+* Add or remove some colours
+* Make each brick a randomly-chosen colour
 
-Step 3c: Make the ball bounce off the bat
------------------------------------------
+Step 4c: Have the ball knock out bricks until none is left
+----------------------------------------------------------
 
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3c.py
+.. literalinclude:: code/s4c.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
 
-* Make the ball go backwards when it hits the bat
-* Make the ball go randomly faster or slower when it hits the bat
+* Have the ball change colour according to which brick it's knocked out
 
-Step 3d: The player dies if the ball hits the bottom of the screen
-------------------------------------------------------------------
-
-The Code
-~~~~~~~~
-
-.. literalinclude:: code/s3d.py
-
-Change it around
-~~~~~~~~~~~~~~~~
-
-* Make the ball change colour several times to show you've died
