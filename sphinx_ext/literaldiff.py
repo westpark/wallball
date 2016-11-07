@@ -1,8 +1,19 @@
-class LiteralInclude(Directive):
+import sys
+import codecs
+import difflib
+
+from docutils import nodes
+from docutils.parsers.rst import Directive, directives
+
+from sphinx import addnodes
+from sphinx.locale import _
+from sphinx.util import parselinenos
+from sphinx.util.nodes import set_source_info
+
+class LiteralDiff(Directive):
     """
-    Like ``.. include:: :literal:``, but only warns if the include file is
-    not found, and does not raise errors.  Also has several options for
-    selecting what to include.
+    Same as ``.. literalinclude::``, but only shows a diff between two
+    sources.
     """
 
     has_content = False
@@ -29,7 +40,6 @@ class LiteralInclude(Directive):
         'caption': directives.unchanged,
         'class': directives.class_option,
         'name': directives.unchanged,
-        'diff': directives.unchanged_required,
     }
 
     def read_with_encoding(self, filename, document, codec_info, encoding):
@@ -93,12 +103,22 @@ class LiteralInclude(Directive):
 
         diffsource = self.options.get('diff')
         if diffsource is not None:
+            return [document.reporter.warning(
+                'Must have something to diff against',
+                line=self.lineno)]
             tmp, fulldiffsource = env.relfn2path(diffsource)
 
             difflines = self.read_with_encoding(fulldiffsource, document,
                                                 codec_info, encoding)
             if not isinstance(difflines[0], string_types):
                 return difflines
+            #
+            # FIXME: generate something other than a unified diff
+            #
+            differ = difflib.Differ()
+            diff_result = list(difflib.compare(lines, difflines))
+            diff_lines = [n for (n, line) in enumerate(diff_result) if line.startswith(("+", "-")
+            lines = 
             diff = unified_diff(
                 difflines,
                 lines,
