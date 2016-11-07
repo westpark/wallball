@@ -14,7 +14,7 @@ Step 3a: Put a bat on the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3a.py
+.. literalinclude:: code/s2a.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -29,7 +29,7 @@ Step 3b: Control the bat with the mouse
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3b.py
+.. literalinclude:: code/s2b.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -44,7 +44,7 @@ Step 3c: Make the ball bounce off the bat
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3c.py
+.. literalinclude:: code/s2c.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -58,7 +58,7 @@ Step 3d: The player dies if the ball hits the bottom of the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3d.py
+.. literalinclude:: code/s2d.py
 
 Change it around
 ~~~~~~~~~~~~~~~~

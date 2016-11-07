@@ -12,7 +12,7 @@ Step 4a: Put one brick on the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s4a.py
+.. literalinclude:: code/s3a.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -26,7 +26,7 @@ Step 4b: Put eight bricks across the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s4b.py
+.. literalinclude:: code/s3b.py
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -42,7 +42,7 @@ Step 4c: Have the ball knock out bricks until none is left
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s4c.py
+.. literalinclude:: code/s3c.py
 
 Change it around
 ~~~~~~~~~~~~~~~~

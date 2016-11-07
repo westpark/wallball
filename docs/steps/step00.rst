@@ -7,7 +7,7 @@ sure we have everything ready to run.
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s1.py
+.. literalinclude:: code/s0.py
 
 That's it. You just need an empty file. That's the simplest possible "game"
 you can build with PyGame Zero. 

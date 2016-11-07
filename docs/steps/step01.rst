@@ -10,7 +10,7 @@ Step 2a: Put a ball on the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2a.py
+.. literalinclude:: code/s1a.py
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
@@ -40,7 +40,7 @@ Step 2b: Make the ball move
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2b.py
+.. literalinclude:: code/s1b.py
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
@@ -67,7 +67,7 @@ Step 2c: Make the ball bounce off the walls
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2c.py
+.. literalinclude:: code/s1c.py
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
