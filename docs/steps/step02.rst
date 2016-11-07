@@ -1,4 +1,4 @@
-Step 3: Make the ball bounce off the bat
+Step 2: Make the ball bounce off the bat
 ========================================
 
 In this step we're going to put an oblong "bat" along the bottom of the
@@ -8,7 +8,7 @@ When the ball hits the bat it will bounce off it.
 Finally, now that we have a bat in place, the player will die if the ball
 reaches the bottom edge of the screen.
 
-Step 3a: Put a bat on the screen
+Step 2a: Put a bat on the screen
 --------------------------------
 
 The Code
@@ -23,7 +23,7 @@ Change it around
 * Change the size of the bat
 * Change where the bat starts
 
-Step 3b: Control the bat with the mouse
+Step 2b: Control the bat with the mouse
 ---------------------------------------
 
 The Code
@@ -38,7 +38,7 @@ Change it around
 * Make the bat move up and down as well as left and right
 * Make the bat move only when one of the buttons is pressed
 
-Step 3c: Make the ball bounce off the bat
+Step 2c: Make the ball bounce off the bat
 -----------------------------------------
 
 The Code
@@ -52,7 +52,7 @@ Change it around
 * Make the ball go backwards when it hits the bat
 * Make the ball go randomly faster or slower when it hits the bat
 
-Step 3d: The player dies if the ball hits the bottom of the screen
+Step 2d: The player dies if the ball hits the bottom of the screen
 ------------------------------------------------------------------
 
 The Code

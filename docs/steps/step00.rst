@@ -1,4 +1,4 @@
-Step 1: Create an empty game
+Step 0: Create an empty game
 ----------------------------
 
 In this step we're going to create a game which does nothing, just to make
