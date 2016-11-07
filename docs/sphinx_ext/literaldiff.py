@@ -40,6 +40,7 @@ class LiteralDiff(Directive):
         'caption': directives.unchanged,
         'class': directives.class_option,
         'name': directives.unchanged,
+        'diff': directives.unchanged,
     }
 
     def read_with_encoding(self, filename, document, codec_info, encoding):
@@ -94,7 +95,7 @@ class LiteralDiff(Directive):
                 line=self.lineno)]
 
         encoding = self.options.get('encoding', env.config.source_encoding)
-        codec_info = codecs.lookup(encoding)
+        codec_info  = codecs.lookup(encoding)
 
         lines = self.read_with_encoding(filename, document,
                                         codec_info, encoding)
@@ -117,14 +118,7 @@ class LiteralDiff(Directive):
             #
             differ = difflib.Differ()
             diff_result = list(difflib.compare(lines, difflines))
-            diff_lines = [n for (n, line) in enumerate(diff_result) if line.startswith(("+", "-")
-            lines = 
-            diff = unified_diff(
-                difflines,
-                lines,
-                diffsource,
-                self.arguments[0])
-            lines = list(diff)
+            hl_lines = [1 + n for (n, line) in enumerate(diff_result) if line.startswith(("+", "-"))] or None
 
         linenostart = self.options.get('lineno-start', 1)
         objectname = self.options.get('pyobject')
@@ -166,14 +160,15 @@ class LiteralDiff(Directive):
                     'Line spec %r: no lines pulled from include file %r' %
                     (linespec, filename), line=self.lineno)]
 
-        linespec = self.options.get('emphasize-lines')
-        if linespec:
-            try:
-                hl_lines = [x+1 for x in parselinenos(linespec, len(lines))]
-            except ValueError as err:
-                return [document.reporter.warning(str(err), line=self.lineno)]
-        else:
-            hl_lines = None
+        if False:
+            linespec = self.options.get('emphasize-lines')
+            if linespec:
+                try:
+                    hl_lines = [x+1 for x in parselinenos(linespec, len(lines))]
+                except ValueError as err:
+                    return [document.reporter.warning(str(err), line=self.lineno)]
+            else:
+                hl_lines = None
 
         start_str = self.options.get('start-after')
         start_inclusive = False
@@ -247,3 +242,6 @@ class LiteralDiff(Directive):
 
         return [retnode]
 
+def setup(app):
+    app.add_directive('literaldiff', LiteralDiff)
+    return {'version': '0.1'}   # identifies the version of our extension

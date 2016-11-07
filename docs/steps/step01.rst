@@ -40,7 +40,8 @@ Step 1b: Make the ball move
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s1b.py
+.. literaldiff:: code/s1b.py
+   :diff: code/s1a.py
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
