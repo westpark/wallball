@@ -117,7 +117,22 @@ class LiteralDiff(Directive):
 
             #
             # Highlight any lines which have been added or and which are not blank
-            # or formed entirely from a comment
+            # or formed entirely from a comment.
+            #
+            # This needs to get more sophisticated: the results of a diff can include:
+            # A line beginning with a blank which is unchanged
+            # A line beginning with a "+" which has been added
+            # A line beginning with a "-" which has been removed
+            # A line beginning with a "?" which represents some change to the line before
+            #
+            # This means that the diffed lines can contain more lines than either of
+            # its sources. We need to show the fully-diffed code, which probably
+            # involves injecting some sort of "## DELETE -->" comment in front of
+            # wholly deleted lines, and removing the change marker lines starting
+            # with "?".
+            # 
+            # We can also opt to leave in "##" lines which might be used to ease the
+            # transition from one step to the next.
             #
             differ = difflib.Differ()
             differ_lines = list(differ.compare(lines, difflines))
