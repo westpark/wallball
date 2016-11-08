@@ -9,6 +9,7 @@ from sphinx import addnodes
 from sphinx.locale import _
 from sphinx.util import parselinenos
 from sphinx.util.nodes import set_source_info
+from sphinx.directives.code import dedent_lines, string_types
 
 class LiteralDiff(Directive):
     """
