@@ -502,7 +502,10 @@ only screen and (min-device-pixel-ratio: 2) {
 /* -- additions for dojo -- */
 
 .highlight .hll {
-    border : 1px dotted red;
+    border : 1px dotted green;
+    /* background needs to be important to override 
+       pygments stylesheet which is loaded later */
+    background-color : yellow !important;
 }
 
 /* -- end additions for dojo -- */

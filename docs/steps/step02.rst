@@ -14,7 +14,9 @@ Step 2a: Put a bat on the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2a.py
+..  literaldiff:: code/s2a.py
+    :diff: code/s1c.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -29,7 +31,9 @@ Step 2b: Control the bat with the mouse
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2b.py
+..  literaldiff:: code/s2b.py
+    :diff: code/s2a.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -44,7 +48,9 @@ Step 2c: Make the ball bounce off the bat
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2c.py
+..  literaldiff:: code/s2c.py
+    :diff: code/s2b.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -58,7 +64,9 @@ Step 2d: The player dies if the ball hits the bottom of the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s2d.py
+..  literaldiff:: code/s2d.py
+    :diff: code/s2c.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~

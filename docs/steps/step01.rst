@@ -13,7 +13,6 @@ The Code
 .. literalinclude:: code/s1a.py
 
 What's happening?
-~~~~~~~~~~~~~~~~~
 
 * A `Ball` is a PyGame Zero rectangle object. Its position is centred on the size of the
   game window: if the window is made bigger, the ball will still be in the middle.
@@ -40,8 +39,10 @@ Step 1b: Make the ball move
 The Code
 ~~~~~~~~
 
-.. literaldiff:: code/s1b.py
-   :diff: code/s1a.py
+..  literaldiff:: code/s1b.py
+    :diff: code/s1a.py
+    :linenos:
+
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
@@ -68,7 +69,9 @@ Step 1c: Make the ball bounce off the walls
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s1c.py
+..  literaldiff:: code/s1c.py
+    :diff: code/s1b.py
+    :linenos:
 
 What's happening?
 ~~~~~~~~~~~~~~~~~

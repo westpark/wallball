@@ -12,7 +12,9 @@ Step 3a: Put one brick on the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3a.py
+..  literaldiff:: code/s3a.py
+    :diff: code/s2d.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -26,7 +28,9 @@ Step 3b: Put eight bricks across the screen
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3b.py
+..  literaldiff:: code/s3b.py
+    :diff: code/s3a.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -42,7 +46,9 @@ Step 3c: Have the ball knock out bricks until none is left
 The Code
 ~~~~~~~~
 
-.. literalinclude:: code/s3c.py
+..  literaldiff:: code/s3c.py
+    :diff: code/s3b.py
+    :linenos:
 
 Change it around
 ~~~~~~~~~~~~~~~~

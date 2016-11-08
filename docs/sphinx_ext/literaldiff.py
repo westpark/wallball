@@ -37,18 +37,17 @@ class LiteralDiff(Directive):
         'end-at': directives.unchanged_required,
         'prepend': directives.unchanged_required,
         'append': directives.unchanged_required,
-        'emphasize-lines': directives.unchanged_required,
         'caption': directives.unchanged,
         'class': directives.class_option,
         'name': directives.unchanged,
-        'diff': directives.unchanged,
+        'diff': directives.unchanged_required,
     }
 
     def read_with_encoding(self, filename, document, codec_info, encoding):
         try:
             with codecs.StreamReaderWriter(open(filename, 'rb'), codec_info[2],
                                            codec_info[3], 'strict') as f:
-                lines = f.readlines()
+                lines = ["%s\n" % line.strip("\r\n") for line in f.readlines()]
                 lines = dedent_lines(lines, self.options.get('dedent'))
                 return lines
         except (IOError, OSError):
@@ -104,22 +103,29 @@ class LiteralDiff(Directive):
             return lines
 
         diffsource = self.options.get('diff')
-        if diffsource is not None:
+        if diffsource is None:
             return [document.reporter.warning(
                 'Must have something to diff against',
                 line=self.lineno)]
+        else:
             tmp, fulldiffsource = env.relfn2path(diffsource)
 
             difflines = self.read_with_encoding(fulldiffsource, document,
                                                 codec_info, encoding)
             if not isinstance(difflines[0], string_types):
                 return difflines
+
             #
-            # FIXME: generate something other than a unified diff
+            # Highlight any lines which have been added or and which are not blank
+            # or formed entirely from a comment
             #
             differ = difflib.Differ()
-            diff_result = list(difflib.compare(lines, difflines))
-            hl_lines = [1 + n for (n, line) in enumerate(diff_result) if line.startswith(("+", "-"))] or None
+            differ_lines = list(differ.compare(lines, difflines))
+            hl_lines = [
+                1 + n 
+                    for (n, line) in enumerate(differ_lines) 
+                    if line.startswith(("+", "-")) and line[2:].strip() and not line[2:].strip().startswith("#")
+            ] or None
 
         linenostart = self.options.get('lineno-start', 1)
         objectname = self.options.get('pyobject')
@@ -160,16 +166,6 @@ class LiteralDiff(Directive):
                 return [document.reporter.warning(
                     'Line spec %r: no lines pulled from include file %r' %
                     (linespec, filename), line=self.lineno)]
-
-        if False:
-            linespec = self.options.get('emphasize-lines')
-            if linespec:
-                try:
-                    hl_lines = [x+1 for x in parselinenos(linespec, len(lines))]
-                except ValueError as err:
-                    return [document.reporter.warning(str(err), line=self.lineno)]
-            else:
-                hl_lines = None
 
         start_str = self.options.get('start-after')
         start_inclusive = False
@@ -212,8 +208,6 @@ class LiteralDiff(Directive):
             text = text.expandtabs(self.options['tab-width'])
         retnode = nodes.literal_block(text, text, source=filename)
         set_source_info(self, retnode)
-        if diffsource:  # if diff is set, set udiff
-            retnode['language'] = 'udiff'
         if 'language' in self.options:
             retnode['language'] = self.options['language']
         retnode['linenos'] = 'linenos' in self.options or \
