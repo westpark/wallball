@@ -36,9 +36,6 @@ BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
-# Create just one brick for now, at the top left of othe screen
-#
-#
 # Create <N_BRICKS> blocks, filling the full width of the screen. 
 # Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
