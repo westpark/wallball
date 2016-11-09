@@ -59,6 +59,42 @@ class LiteralDiff(Directive):
                 'Encoding %r used for reading included file %r seems to '
                 'be wrong, try giving an :encoding: option' %
                 (encoding, filename))]
+    
+    def output_lines_with_highlight(self, differ_lines):
+        """Produce readable output lines from Differ output
+        
+        The Differ class produces a humanish-readable set of lines,
+        indicating by means of a prefix which have been added and
+        which removed. When a line has *changed* it can appear as
+        a line with a separate line underneath containing markers
+        which point to the changed areas.
+        
+        For the purposes of our output (and because Pygments only
+        supports whole-line highlighting) we'll just indicate that
+        a line has changed.
+        
+        If a line has been deleted, comment text will be prepended
+        to it to indicate that it should be deleted. Again, because
+        Pygments only supports one kind of highlighting.
+        
+        Yields: (output_line, highlight?) for each line of input
+        """
+        for line in differ_lines:
+            #
+            # Added or removed lines are to be highlighted
+            # Removed lines have comment text prepended
+            # Other lines are returned unchanged
+            #
+            if line.startswith(" "):
+                yield line[2:], False
+            elif line.startswith("+"):
+                yield line[2:], True
+            elif line.startswith("-"):
+                yield "## DELETE --> " + line[2:], True
+            elif line.startswith("?"):
+                continue
+            else:
+                raise RuntimeError("Unexpected character %s at the beginning of the line" % line[0])
 
     def run(self):
         document = self.state.document
@@ -134,13 +170,14 @@ class LiteralDiff(Directive):
             # We can also opt to leave in "##" lines which might be used to ease the
             # transition from one step to the next.
             #
-            differ = difflib.Differ()
-            differ_lines = list(differ.compare(lines, difflines))
-            hl_lines = [
-                1 + n 
-                    for (n, line) in enumerate(differ_lines) 
-                    if line.startswith(("+", "-")) and line[2:].strip() and not line[2:].strip().startswith("#")
-            ] or None
+            hl_lines = []
+            output_lines = []
+            for n, (line, highlight) in enumerate(self.output_lines_with_highlight(difflib.Differ().compare(lines, difflines))):
+                output_lines.append(line)
+                if highlight:
+                    hl_lines.append(1 + n)
+            
+            lines = output_lines
 
         linenostart = self.options.get('lineno-start', 1)
         objectname = self.options.get('pyobject')
@@ -230,7 +267,7 @@ class LiteralDiff(Directive):
                              'lineno-match' in self.options
         retnode['classes'] += self.options.get('class', [])
         extra_args = retnode['highlight_args'] = {}
-        if hl_lines is not None:
+        if hl_lines:
             extra_args['hl_lines'] = hl_lines
         extra_args['linenostart'] = linenostart
         env.note_dependency(rel_filename)
