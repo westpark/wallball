@@ -1,6 +1,7 @@
 import sys
 import codecs
 import difflib
+import re
 
 from docutils import nodes
 from docutils.parsers.rst import Directive, directives
@@ -75,22 +76,32 @@ class LiteralDiff(Directive):
         
         If a line has been deleted, comment text will be prepended
         to it to indicate that it should be deleted. Again, because
-        Pygments only supports one kind of highlighting.
+        Pygments only supports one kind of highlighting. Otherwise
+        we might consider using, eg, strikeout for deleted lines.
         
         Yields: (output_line, highlight?) for each line of input
         """
+        leading_whitespace = re.compile(r"^\s*")
         for line in differ_lines:
             #
             # Added or removed lines are to be highlighted
             # Removed lines have comment text prepended
             # Other lines are returned unchanged
+            # Lines which are only whitespace and/or comments are shown 
+            #   but not highlighted, even if they've been changed or added
             #
+            remainder = line[2:]
             if line.startswith(" "):
-                yield line[2:], False
+                yield remainder, False
+            elif remainder.lstrip().startswith("#"):
+                yield remainder, False
+            elif not remainder.strip():
+                yield remainder, False
             elif line.startswith("+"):
-                yield line[2:], True
+                yield remainder, True
             elif line.startswith("-"):
-                yield "## DELETE --> " + line[2:], True
+                match = leading_whitespace.match(remainder)
+                yield match.group() + "## DELETE --> " + remainder.lstrip(), True
             elif line.startswith("?"):
                 continue
             else:
@@ -153,31 +164,20 @@ class LiteralDiff(Directive):
 
             #
             # Highlight any lines which have been added or and which are not blank
-            # or formed entirely from a comment.
-            #
-            # This needs to get more sophisticated: the results of a diff can include:
-            # A line beginning with a blank which is unchanged
-            # A line beginning with a "+" which has been added
-            # A line beginning with a "-" which has been removed
-            # A line beginning with a "?" which represents some change to the line before
-            #
-            # This means that the diffed lines can contain more lines than either of
-            # its sources. We need to show the fully-diffed code, which probably
-            # involves injecting some sort of "## DELETE -->" comment in front of
-            # wholly deleted lines, and removing the change marker lines starting
-            # with "?".
-            # 
-            # We can also opt to leave in "##" lines which might be used to ease the
-            # transition from one step to the next.
+            # or formed entirely from a comment. Other lines are shown unchanged.
             #
             hl_lines = []
             output_lines = []
-            for n, (line, highlight) in enumerate(self.output_lines_with_highlight(difflib.Differ().compare(lines, difflines))):
+            for n, (line, highlight) in enumerate(
+                self.output_lines_with_highlight(
+                    difflib.Differ().compare(difflines, lines)
+                )
+            ):
                 output_lines.append(line)
                 if highlight:
                     hl_lines.append(1 + n)
             
-            lines = output_lines
+            lines = output_lines[:]
 
         linenostart = self.options.get('lineno-start', 1)
         objectname = self.options.get('pyobject')
@@ -291,4 +291,4 @@ class LiteralDiff(Directive):
 
 def setup(app):
     app.add_directive('literaldiff', LiteralDiff)
-    return {'version': '0.1'}   # identifies the version of our extension
+    return {'version': '1.0'}

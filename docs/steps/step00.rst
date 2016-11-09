@@ -17,28 +17,9 @@ What's happening here?
 
 In fact, PyGame Zero is doing a lot of work on your behalf. If this
 were a "real" PyGame program, in order to get a window which did nothing
-and which closed when you pressed Ctrl+Q, this is what you'd have to write::
-
-    #
-    # !! DO NOT TYPE THIS CODE IN: IT IS INTENDED TO SHOW YOU WANT YOU
-    # !! WOULD HAVE HAD TO HAVE TYPED IF YOU WEREN'T USING PYGAME ZERO
-    #
-    import pygame
-
-    pygame.init()
-
-    size = 800, 600
-    screen = pygame.display.set_mode(size)
-
-    clock = pygame.time.Clock()
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_q:
-                sys.exit()
-
-        screen.fill(pygame.Color("black"))
-        pygame.display.flip()
-        clock.tick(60)
+and which closed when you pressed Ctrl+Q, you'd have to write a dozen lines
+of code. If you want to see what that would look like, look at the PyGame
+Zero primer.
 
 That's just to get the game to do nothing! Eventually you'll need something
 which PyGame Zero doesn't provide and which PyGame itself does and then

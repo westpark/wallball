@@ -18,6 +18,14 @@ The Code
     :diff: code/s1c.py
     :linenos:
 
+What's happening?
+~~~~~~~~~~~~~~~~~
+
+* We make the bat in the same was as the ball, as a rectangle, only with a different
+  shape and a different colour.
+  
+* We draw it in the same way as well, inside the `draw` function.
+
 Change it around
 ~~~~~~~~~~~~~~~~
 
@@ -35,6 +43,16 @@ The Code
     :diff: code/s2a.py
     :linenos:
 
+What's happening?
+~~~~~~~~~~~~~~~~~
+
+* When the mouse is moved, PyGame Zero automatically calls a function called
+  `on_mouse_move` and passes in the current position of the mouse. We're only
+  interested in the horizontal movement, so we pick out the x-coordinate.
+  
+* By setting the bat's x-centre to the same as the mouse's x-coordinate whenever
+  the mouse moves, we make the bat move horizontally with the mouse.
+
 Change it around
 ~~~~~~~~~~~~~~~~
 
@@ -51,6 +69,14 @@ The Code
 ..  literaldiff:: code/s2c.py
     :diff: code/s2b.py
     :linenos:
+
+What's happening?
+~~~~~~~~~~~~~~~~~
+
+* The colliderect function detects when one rectangle (the ball) has collided
+  with another rectangle (the bat). As soon as this happens, we reverse the
+  vertical direction of the ball (its y-direction) and it appears to "bounce"
+  off the bat.
 
 Change it around
 ~~~~~~~~~~~~~~~~

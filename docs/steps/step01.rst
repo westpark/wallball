@@ -13,6 +13,7 @@ The Code
 .. literalinclude:: code/s1a.py
 
 What's happening?
+~~~~~~~~~~~~~~~~~
 
 * A `Ball` is a PyGame Zero rectangle object. Its position is centred on the size of the
   game window: if the window is made bigger, the ball will still be in the middle.
@@ -28,10 +29,12 @@ What's happening?
 Change it around
 ~~~~~~~~~~~~~~~~
 
-* Change the colour of the ball
+* Change the colour of the ball. *Hint: there's a list of colours in the PyGame Zero section*.
 * Change the size of the ball
 * Change where the ball appears
 * Have the ball appear somewhere different every time
+  *Hint: you might import the `random` module and use the function `randint`
+  to select where the ball starts from*
 
 Step 1b: Make the ball move
 ---------------------------
@@ -55,13 +58,17 @@ What's happening?
   in the `draw` function.
   
 * `ball.move_ip` tells PyGame to change the position of the ball rectangle by
-  the requested amount.
+  the requested amount. The "ip" part of that stands for "in-place": it moves
+  the ball itself; there  is an equivalent called just `ball.move` that returns
+  a new ball object which has been moved by the requested amount.
 
 Change it around
 ~~~~~~~~~~~~~~~~
 
 * Make the ball move faster or slower
 * Change the angle at which the ball moves
+  *Hint: the angle is determined by the ball's direction which combines
+  an x and a y component.*
 
 Step 1c: Make the ball bounce off the walls
 -------------------------------------------
@@ -75,6 +82,12 @@ The Code
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
+
+* In our program `WIDTH` is the width of the window the game is running in
+  and `HEIGHT` is its height. Although you can normally give variables like
+  this whatever name you liked (such as `W` and `H` or `x_extent` and `y_extent`),
+  when you're using PyGame Zero, the names WIDTH and HEIGHT have a special
+  meaning and must be spelt exactly that way.
 
 * When the edge of the ball reaches the left or right-hand edge of the screen, we
   change its horizontal direction only so it appears to bounce back off the wall.
