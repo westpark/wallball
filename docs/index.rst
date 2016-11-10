@@ -23,6 +23,7 @@ else's game will have the particular ideas which your's has. Make it yours.
     introduction
     overview
     setting_up
+    using-these-worksheets
     steps/*
     change-it-all-around
     pygame-zero

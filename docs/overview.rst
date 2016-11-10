@@ -6,13 +6,13 @@ Writing the Game
 
 We're going to write the program in four stages, some of which are broken into smaller stages:
 
-1) Create an empty game
+0) Create an empty game
 
-2) Get a ball to bounce around the screen
+1) Get a ball to bounce around the screen
 
-3) Create a bat controlled by the user which the ball will bounce off
+2) Create a bat controlled by the user which the ball will bounce off
 
-4) Create bricks which the ball will knock out
+3) Create bricks which the ball will knock out
 
 At each of the steps you'll be told what code to write. But there will also be suggestions to
 change things around, to try things out.
@@ -20,7 +20,7 @@ change things around, to try things out.
 Also, at each stage, there will be an explanation of some the things which 
 are happening, to help you understand what your code is doing.
 
-At the very end, there will be suggestions for how to extend the whole game, 
+At the very end, there will be ideas for how to extend the whole game, 
 to add extra elements or make things more difficult or more interesting.
 
 Running the Game

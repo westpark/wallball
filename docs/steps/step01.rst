@@ -10,6 +10,10 @@ Step 1a: Put a ball on the screen
 The Code
 ~~~~~~~~
 
+.. note:: Normally code which you should type is highlighted in yellow. Since this
+          is the first code in the worksheet, you need to type it all in. I haven't
+          highlighted it all in yellow!
+
 .. literalinclude:: code/s1a.py
 
 What's happening?
@@ -29,11 +33,21 @@ What's happening?
 Change it around
 ~~~~~~~~~~~~~~~~
 
-* Change the colour of the ball. *Hint: there's a list of colours in the PyGame Zero section*.
+* Change the colour of the ball.
+
+  **Hint**: there's a list of colours in the PyGame Zero section.
+
 * Change the size of the ball
+
+  **Hint**: the last two numbers inside the `ball = Ball(...)` constructor are its initial size.
+
 * Change where the ball appears
+
+  **Hint**: the first two numbers inside the `ball = Ball(...)` constructor are its initial position.
+
 * Have the ball appear somewhere different every time
-  *Hint: you might import the `random` module and use the function `randint`
+
+  **Hint**: you can import the `random` module and use the function `randint`
   to select where the ball starts from*
 
 Step 1b: Make the ball move
@@ -67,8 +81,9 @@ Change it around
 
 * Make the ball move faster or slower
 * Change the angle at which the ball moves
-  *Hint: the angle is determined by the ball's direction which combines
-  an x and a y component.*
+  
+  **Hint**: the angle is determined by the ball's direction which 
+  combines an x and a y component.
 
 Step 1c: Make the ball bounce off the walls
 -------------------------------------------
