@@ -3,19 +3,22 @@ HEIGHT = 480
 
 class Ball(ZRect): pass
 #
-# The ball is a square red block which starts in the middle
-# of the screen moving towards the lower-right.
+# The ball is a red square halfway across the game screen
 #
-BALL_W = 30
-BALL_H = BALL_W
-ball = Ball(WIDTH / 2, HEIGHT / 2, BALL_W, BALL_H)
-ball.direction = 1, 1
-ball.speed = 3
+ball = Ball(WIDTH / 2, HEIGHT / 2, 30, 30)
 ball.colour = "red"
+#
+# The ball moves one step right and one step down each tick
+#
+ball.direction = 1, 1
+#
+# The ball moves at a speed of 3 steps each tick
+#
+ball.speed = 3
 
 class Bat(ZRect): pass
 #
-# The bat is a green oblong which starts just above the bottom
+# The bat is a green oblong which starts just along the bottom
 # of the screen and halfway across.
 #
 BAT_W = 150
@@ -23,103 +26,90 @@ BAT_H = 15
 bat = Bat(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
 bat.colour = "green"
 
-N_BLOCKS = 8
-BLOCK_W = WIDTH / N_BLOCKS
-BLOCK_H = BLOCK_W / 4
-BLOCK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
-
-class Block(ZRect): pass
+class Brick(ZRect): pass
 #
-# Create <N_BLOCKS> blocks, filling the full width of the screen. 
-# Each block is as high as a quarter of its width, so they remain
+# The brick is a rectangle one eight the width of the game screen
+# and one quarter high as it is wide.
+#
+N_BRICKS = 8
+BRICK_W = WIDTH / N_BRICKS
+BRICK_H = BRICK_W / 4
+BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
+#
+# Create just one brick for now, at the top left of othe screen
+#
+#
+# Create <N_BRICKS> blocks, filling the full width of the screen. 
+# Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
 #
-# The block colours cycle through <BLOCK_COLOURS>
+# The brick colours cycle through <BRICK_COLOURS>
 #
-blocks = []
-for n_block in range(N_BLOCKS):
-    block = Block(n_block * BLOCK_W, 0, BLOCK_W, BLOCK_H)
-    block.colour = BLOCK_COLOURS[n_block % len(BLOCK_COLOURS)]
-    blocks.append(block)
-
-def draw_blocks():
-    """Draw all the remaining blocks on the screen, each in its
-    own colour and at its own position. Any blocks which have
-    been "killed" won't be in the list and so won't be drawn.
-    """
-    for block in blocks:
-        screen.draw.filled_rect(block, block.colour)
+bricks = []
+for n_brick in range(N_BRICKS):
+    brick = Brick(n_brick * BRICK_W, 0, BRICK_W, BRICK_H)
+    brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
+    bricks.append(brick)
 
 def draw():
-    """Redraw the entire screen:
-    
-    * Clear the background
-    * Draw the ball
-    * Draw the bat
-    """
+    #
+    # Clear the screen and place the ball at its current position
+    #
     screen.clear()
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
-    draw_blocks()
+    for brick in bricks:
+        screen.draw.filled_rect(brick, brick.colour)
 
 def on_mouse_move(pos):
-    """Make the bat follow the horizontal movement of the mouse.
-    Make sure it doesn't run off the left or right of the screen
-    """
+    #
+    # Make the bat follow the horizontal movement of the mouse.
+    #
     x, y = pos
     bat.centrex = x
 
 def update():
-    """Move the ball and then determine what effect its new position has
-    """
-    dt = 1
     #
-    # Move the ball along its current direction
+    # Move the ball along its current direction at its current speed
     #
     dx, dy = ball.direction
-    ball.move_ip(ball.speed * dx * dt, ball.speed * dy * dt)
-
-    #
-    # If the ball hits a rectangle, kill that rectangle and
-    # bounce the ball.
-    #
-    to_kill = ball.collidelist(blocks)
-    if to_kill >= 0:
-        sounds.block.play()
-        blocks.pop(to_kill)
-        ball.direction = dx, -dy
-
-    #
-    # Bounce the ball off the right or left walls
-    #
-    if ball.right >= WIDTH or ball.left <= 0:
-        sounds.blip.play()
-        ball.direction = -dx, dy
+    ball.move_ip(ball.speed * dx, ball.speed * dy)
 
     #
     # Bounce the ball off the bat
     #
     if ball.colliderect(bat):
-        sounds.blip.play()
         ball.direction = dx, -dy
 
     #
-    # Bounce the ball off the top wall
+    # If the ball hits a brick, kill that brick and
+    # bounce the ball.
     #
-    if ball.top <= 0:
-        sounds.blip.play()
+    to_kill = ball.collidelist(bricks)
+    if to_kill >= 0:
+        bricks.pop(to_kill)
         ball.direction = dx, -dy
+    
+    #
+    # Bounce the ball off the left or right walls
+    #
+    if ball.right >= WIDTH or ball.left <= 0:
+        ball.direction = -dx, dy
 
     #
     # If the ball hits the bottom of the screen, you lose
     #
     if ball.bottom >= HEIGHT:
-        sounds.die.play()
         exit()
     
     #
-    # If there are no blocks left, you win
+    # Bounce the ball off the top wall
     #
-    if not blocks:
-        sounds.win.play()
+    if ball.top <= 0:
+        ball.direction = dx, -dy
+
+    #
+    # If there are no bricks left, you win
+    #
+    if not bricks:
         exit()
