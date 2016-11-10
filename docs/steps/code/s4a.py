@@ -1,6 +1,10 @@
 WIDTH = 640
 HEIGHT = 480
 
+class Game(object): pass
+game = Game()
+game.state = "running"
+
 class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
@@ -53,6 +57,11 @@ def draw():
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
+    screen.draw.text(
+        "State: %s" % game.state, 
+        bottomleft=(0, HEIGHT - BAT_H),
+        background="NavyBlue"
+    )
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
     for brick in bricks:
