@@ -26,7 +26,7 @@ What's happening?
 * We make the bat in the same way as the ball: a coloured rectangle, only with a different
   shape and a different colour.
   
-* We draw it in the same way as well, inside the `draw` function.
+* We draw it in the same way as well, inside the ``draw`` function.
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -64,12 +64,12 @@ Change it around
   
 * Make the bat move up and down as well as left and right
 
-  **Hint:** The bat -- like any PyGame rectangle as a centerx and a centery attribute
+  **Hint:** The bat -- like any PyGame rectangle -- has a centerx and a centery attribute
   
 * Make the bat move only when one of the buttons is pressed
 
-  **Hint:** As well as an `on_mouse_move` event, PyGame Zero has `on_mouse_down`
-  and `on_mouse_up` events, which pass in the mouse position and which button was pressed.
+  **Hint:** As well as an :func:`on_mouse_move` event, PyGame Zero has :func:`on_mouse_down`
+  and :func:`on_mouse_up` events, which pass in the mouse position and which button was pressed.
 
 Step 2c: Make the ball bounce off the bat
 -----------------------------------------
@@ -84,7 +84,7 @@ The Code
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-* The colliderect function detects when one rectangle (the ball) has collided
+* The ``colliderect`` function detects when one rectangle (the ball) has collided
   with another rectangle (the bat). As soon as this happens, we reverse the
   vertical direction of the ball (its y-direction) and it appears to "bounce"
   off the bat.

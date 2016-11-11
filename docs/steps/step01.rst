@@ -21,14 +21,14 @@ The Code
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-* A `Ball` is a PyGame Zero rectangle object. Its position is centred on the size of the
+* A ``Ball`` is a PyGame Zero rectangle object. Its position is centred on the size of the
   game window: if the window is made bigger, the ball will still be in the middle.
   When you create a PyGame rectangle object, you give it four numbers: x, y, w, h
   
-  **NB** Although the first two numbers are using the `WIDTH` & `HEIGHT` constants, they
+  **NB** Although the first two numbers are using the :const:`WIDTH` & :const:`HEIGHT` constants, they
   represent the x, y position of the ball.
 
-* The `draw` function is a :ref:`special function <pg0-functions>` which PyGame Zero calls to show whatever
+* The ``draw`` function is a :ref:`special function <pg0-functions>` which PyGame Zero calls to show whatever
   needs to be there on the game screen. In this case, we just clear the screen every
   time and draw the ball.
 
@@ -41,15 +41,15 @@ Change it around
 
 * Change the size of the ball
 
-  **Hint**: the last two numbers inside the `ball = Ball(...)` constructor are its initial size.
+  **Hint**: the last two numbers inside the ``ball = Ball(...)`` constructor are its initial size.
 
 * Change where the ball appears
 
-  **Hint**: the first two numbers inside the `ball = Ball(...)` constructor are its initial position.
+  **Hint**: the first two numbers inside the ``ball = Ball(...)`` constructor are its initial position.
 
 * Have the ball appear somewhere different every time
 
-  **Hint**: you can import the `random` module and use the function `randint`
+  **Hint**: you can import the ``random`` module and use the function ``randint``
   to select where the ball starts from
 
 Step 1b: Make the ball move
@@ -70,12 +70,12 @@ What's happening?
 
 * The `update` function is another :ref:`special function <pg0-functions>` which is called by PyGame Zero on
   every tick of its clock: it's where we calculate how much our different objects
-  have moved. You don't put anything on the screen in the `update` function, only
-  in the `draw` function.
+  have moved. You don't put anything on the screen in the ``update`` function, only
+  in the ``draw`` function.
   
-* `ball.move_ip` tells PyGame to change the position of the ball rectangle by
+* ``ball.move_ip`` tells PyGame to change the position of the ball rectangle by
   the requested amount. The "ip" part of that stands for "in-place": it moves
-  the ball itself; there  is an equivalent called just `ball.move` that returns
+  the ball itself; there  is an equivalent called just ``ball.move`` that returns
   a new ball object which has been moved by the requested amount.
 
 Change it around
@@ -100,10 +100,10 @@ The Code
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-* In our program `WIDTH` is the width of the window the game is running in
-  and `HEIGHT` is its height. Although you can normally give variables like
-  this whatever name you liked (such as `W` and `H` or `x_extent` and `y_extent`),
-  when you're using PyGame Zero, the names `WIDTH` and `HEIGHT` have a special
+* In our program :const:`WIDTH` is the width of the window the game is running in
+  and :const:`HEIGHT` is its height. Although you can normally give variables like
+  this whatever name you liked (such as ``W`` and ``H`` or ``x_extent`` and ``y_extent``),
+  when you're using PyGame Zero, the names :const:`WIDTH` and :const:`HEIGHT` have a special
   meaning and must be spelt exactly that way.
 
 * When the edge of the ball reaches the left or right-hand edge of the screen, we

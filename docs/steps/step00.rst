@@ -20,8 +20,8 @@ What's happening here?
 In fact, PyGame Zero is doing a lot of work on your behalf. If this
 were a "real" PyGame program, in order to get a window which did nothing
 and which closed when you pressed Ctrl+Q, you'd have to write a dozen lines
-of code. If you want to see what that would look like, look at the PyGame
-Zero primer.
+of code. If you want to see what that would look like, look at the :ref:`PyGame
+Zero section <pg0>` at the end.
 
 That's just to get the game to do nothing! Eventually you'll need something
 which PyGame Zero doesn't provide and which PyGame itself does and then
