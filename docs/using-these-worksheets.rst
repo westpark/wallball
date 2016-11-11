@@ -8,8 +8,8 @@ One last thing before we start coding: how to use these worksheets.
 * Every step builds on the previous one and results in a visible
   change to the game. The new parts of the code are shown in yellow.
   
-* Very occasionally, to produce a result, a step will do something
-  simple which then will then replace by something more sophisticated
+* Occasionally, to produce a result, a step will do something
+  simple which then will then be replaced by something more sophisticated
   in a later step. Parts which have now been removed are shown in yellow 
   with a ##DELETE flag.
   
