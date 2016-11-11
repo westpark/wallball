@@ -1,3 +1,5 @@
+.. _step0:
+
 Step 0: Create an empty game
 ----------------------------
 

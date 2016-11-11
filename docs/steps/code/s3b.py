@@ -34,7 +34,7 @@ class Brick(ZRect): pass
 N_BRICKS = 8
 BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
-BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
+BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
 #
 # Create <N_BRICKS> blocks, filling the full width of the screen. 
 # Each brick is as high as a quarter of its width, so they remain
@@ -63,7 +63,7 @@ def on_mouse_move(pos):
     # Make the bat follow the horizontal movement of the mouse.
     #
     x, y = pos
-    bat.centrex = x
+    bat.centerx = x
 
 def update():
     #

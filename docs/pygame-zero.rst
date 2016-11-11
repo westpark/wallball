@@ -1,3 +1,5 @@
+.. _pg0:
+
 PyGame Zero
 ===========
 
@@ -12,6 +14,8 @@ Magic Constants
 Magic Functions
 ---------------
 
+.. _pg0-functions:
+
 **update**
     In this function perform any work which involves changing the positions, sizes,
     images &c. of objects which will be drawn in the `draw` function.
@@ -22,6 +26,8 @@ Magic Functions
     Draw whatever's needed to the screen.
     
     Do not do calculations here: those should be done in the `update` function
+
+.. _pg0-events:
 
 **on_mouse_down(pos, button)**
     Called when a mouse button is pressed.
@@ -76,6 +82,8 @@ All these are part of the `keymods` object.
 * Shifts are: `keymods.SHIFT`, `keymods.LSHIFT`, `keymods.RSHIFT`
 * Ctrls are: `keymods.CTRL`, `keymods.LCTRL`, `keymods.RCTRL`
 * Alts are: `keymods.ALT`, `keymods.LALT`, `keymods.RALT`
+
+.. _pg0-colours:
 
 Colours
 -------
