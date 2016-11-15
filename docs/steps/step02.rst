@@ -1,3 +1,5 @@
+.. _step2:
+
 Step 2: Make the ball bounce off the bat
 ========================================
 
@@ -21,10 +23,10 @@ The Code
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-* We make the bat in the same was as the ball, as a rectangle, only with a different
+* We make the bat in the same way as the ball: a coloured rectangle, only with a different
   shape and a different colour.
   
-* We draw it in the same way as well, inside the `draw` function.
+* We draw it in the same way as well, inside the ``draw`` function.
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -57,8 +59,17 @@ Change it around
 ~~~~~~~~~~~~~~~~
 
 * Make the bat move left & right according to the up and down movement of the mouse
+
+  **Hint:** The mouse position has two components: x & y -- guess which one you want to use?
+  
 * Make the bat move up and down as well as left and right
+
+  **Hint:** The bat -- like any PyGame rectangle -- has a centerx and a centery attribute
+  
 * Make the bat move only when one of the buttons is pressed
+
+  **Hint:** As well as an :func:`on_mouse_move` event, PyGame Zero has :func:`on_mouse_down`
+  and :func:`on_mouse_up` events, which pass in the mouse position and which button was pressed.
 
 Step 2c: Make the ball bounce off the bat
 -----------------------------------------
@@ -73,7 +84,7 @@ The Code
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-* The colliderect function detects when one rectangle (the ball) has collided
+* The ``colliderect`` function detects when one rectangle (the ball) has collided
   with another rectangle (the bat). As soon as this happens, we reverse the
   vertical direction of the ball (its y-direction) and it appears to "bounce"
   off the bat.
@@ -82,6 +93,10 @@ Change it around
 ~~~~~~~~~~~~~~~~
 
 * Make the ball go backwards when it hits the bat
+
+  **Hint:** At the moment, we only change the ball's y-direction when we
+  detect a collision with the bat.
+  
 * Make the ball go randomly faster or slower when it hits the bat
 
 Step 2d: The player dies if the ball hits the bottom of the screen
@@ -93,8 +108,3 @@ The Code
 ..  literaldiff:: code/s2d.py
     :diff: code/s2c.py
     :linenos:
-
-Change it around
-~~~~~~~~~~~~~~~~
-
-* Make the ball change colour several times to show you've died

@@ -63,7 +63,7 @@ def on_mouse_move(pos):
     # Make the bat follow the horizontal movement of the mouse.
     #
     x, y = pos
-    bat.centrex = x
+    bat.centerx = x
 
 def update():
     #
