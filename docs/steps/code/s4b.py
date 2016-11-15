@@ -12,7 +12,7 @@ class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
 #
-ball = Ball(WIDTH / 2, HEIGHT / 2, 30, 30)
+ball = Ball(GAME_VIEW.center, (30, 30))
 ball.colour = "red"
 #
 # The ball moves one step right and one step down each tick
@@ -30,7 +30,7 @@ class Bat(ZRect): pass
 #
 BAT_W = 150
 BAT_H = 15
-bat = Bat(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
+bat = Bat(GAME_VIEW.centerx, GAME_VIEW.bottom - BAT_H, BAT_W, BAT_H)
 bat.colour = "green"
 
 class Brick(ZRect): pass
@@ -39,7 +39,7 @@ class Brick(ZRect): pass
 # and one quarter high as it is wide.
 #
 N_BRICKS = 8
-BRICK_W = WIDTH / N_BRICKS
+BRICK_W = GAME_VIEW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
@@ -51,7 +51,7 @@ BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
 bricks = []
 for n_brick in range(N_BRICKS):
-    brick = Brick(n_brick * BRICK_W, 0, BRICK_W, BRICK_H)
+    brick = Brick(GAME_VIEW.left + (n_brick * BRICK_W), GAME_VIEW.top, BRICK_W, BRICK_H)
     brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
     bricks.append(brick)
 
@@ -73,6 +73,7 @@ def on_mouse_move(pos):
     #
     x, y = pos
     bat.centrex = x
+    bat.clamp_ip(GAME_VIEW)
 
 def update():
     #
@@ -99,19 +100,19 @@ def update():
     #
     # Bounce the ball off the left or right walls
     #
-    if ball.right >= WIDTH or ball.left <= 0:
+    if ball.right >= GAME_VIEW.right or ball.left <= GAME_VIEW.left:
         ball.direction = -dx, dy
 
     #
     # If the ball hits the bottom of the screen, you lose
     #
-    if ball.bottom >= HEIGHT:
+    if ball.bottom >= GAME_VIEW.bottom:
         exit()
     
     #
     # Bounce the ball off the top wall
     #
-    if ball.top <= 0:
+    if ball.top <= GAME_VIEW.top:
         ball.direction = dx, -dy
 
     #
