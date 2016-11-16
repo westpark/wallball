@@ -1,6 +1,10 @@
 WIDTH = 640
 HEIGHT = 480
 
+#
+# Create a game window which can be smaller than the
+# screen with its own background & frame colours.
+#
 GAME_WINDOW = ZRect(0, 0, WIDTH, HEIGHT)
 GAME_WINDOW.inflate_ip(-50, -50)
 GAME_WINDOW.background_colour = "darkblue"
@@ -58,6 +62,9 @@ def draw():
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
+    #
+    # Draw the game window and a frame around it
+    #
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
     

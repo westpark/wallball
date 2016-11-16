@@ -5,9 +5,17 @@ class Game(object): pass
 game = Game()
 game.status = "running"
 
-STATUS_RECT = ZRect(0, HEIGHT - 60, WIDTH, 60)
+#
+# Create a status display, as wide as the screen and 60 pixels high.
+# It's placed at the bottom of the screen
+#
+STATUS_DISPLAY = ZRect(0, HEIGHT - 60, WIDTH, 60)
 
-GAME_WINDOW = ZRect(0, STATUS_RECT.height - 1, WIDTH, HEIGHT)
+#
+# Create a game window which is as wide as the screen but allows
+# a status display underneath
+#
+GAME_WINDOW = ZRect(0, STATUS_DISPLAY.height - 1, WIDTH, HEIGHT)
 GAME_WINDOW.background_colour = "darkblue"
 GAME_WINDOW.frame_colour = "white"
 
@@ -69,7 +77,7 @@ def draw():
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
     
-    screen.draw.text("Status: %s" % game.status, center=STATUS_RECT.center)
+    screen.draw.text("Status: %s" % game.status, center=STATUS_DISPLAY.center)
     
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
