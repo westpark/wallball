@@ -21,7 +21,7 @@ GAME_WINDOW.frame_colour = "white"
 
 class Ball(ZRect): pass
 #
-# The ball is a red square halfway across the game screen
+# The ball is a red square halfway across the game window
 #
 ball = Ball(GAME_WINDOW.center, (30, 30))
 ball.colour = "red"
@@ -37,7 +37,7 @@ ball.speed = 3
 class Bat(ZRect): pass
 #
 # The bat is a green oblong which starts just along the bottom
-# of the screen and halfway across.
+# of the game window and halfway across.
 #
 BAT_W = 150
 BAT_H = 15
@@ -46,7 +46,7 @@ bat.colour = "green"
 
 class Brick(ZRect): pass
 #
-# The brick is a rectangle one eight the width of the game screen
+# The brick is a rectangle one eight the width of the game window
 # and one quarter high as it is wide.
 #
 N_BRICKS = 8
@@ -54,7 +54,7 @@ BRICK_W = GAME_WINDOW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
-# Create <N_BRICKS> blocks, filling the full width of the screen. 
+# Create <N_BRICKS> blocks, filling the full width of the game window. 
 # Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
 #
@@ -71,12 +71,18 @@ for n_brick in range(N_BRICKS):
 
 def draw():
     #
-    # Clear the screen and place the ball at its current position
+    # Clear the screen, draw the game window and place the ball at its current position
     #
     screen.clear()
+    #
+    # Draw the game window and a frame around it
+    #
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
     
+    #
+    # Show the current status, centred inside the status area
+    #
     screen.draw.text("Status: %s" % game.status, center=STATUS_DISPLAY.center)
     
     screen.draw.filled_rect(ball, ball.colour)
@@ -87,6 +93,7 @@ def draw():
 def on_mouse_move(pos):
     #
     # Make the bat follow the horizontal movement of the mouse.
+    # Ensure that the bat does not move outside the game window.
     #
     x, y = pos
     bat.centrex = x
@@ -121,7 +128,7 @@ def update():
         ball.direction = -dx, dy
 
     #
-    # If the ball hits the bottom of the screen, you lose
+    # If the ball hits the bottom wall, you lose
     #
     if ball.bottom >= GAME_WINDOW.bottom:
         exit()

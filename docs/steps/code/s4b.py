@@ -65,6 +65,9 @@ def draw():
     # Clear the screen, draw the game window and place the ball at its current position
     #
     screen.clear()
+    #
+    # Draw the game window and a frame around it
+    #
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
     
@@ -111,7 +114,7 @@ def update():
         ball.direction = -dx, dy
 
     #
-    # If the ball hits the bottom of the screen, you lose
+    # If the ball hits the bottom wall, you lose
     #
     if ball.bottom >= GAME_WINDOW.bottom:
         exit()
