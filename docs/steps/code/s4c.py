@@ -15,7 +15,7 @@ STATUS_DISPLAY = ZRect(0, HEIGHT - 60, WIDTH, 60)
 # Create a game window which is as wide as the screen but allows
 # a status display underneath
 #
-GAME_WINDOW = ZRect(0, STATUS_DISPLAY.height - 1, WIDTH, HEIGHT)
+GAME_WINDOW = ZRect(0, 0, WIDTH, HEIGHT - STATUS_DISPLAY.height - 1)
 GAME_WINDOW.background_colour = "darkblue"
 GAME_WINDOW.frame_colour = "white"
 
