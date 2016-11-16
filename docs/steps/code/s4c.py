@@ -5,19 +5,17 @@ class Game(object): pass
 game = Game()
 game.status = "running"
 
-STATUS_H = 60
-GAME_VIEW = ZRect(0, 0, WIDTH, HEIGHT - STATUS_H)
-GAME_VIEW.inflate_ip(-2, -2)
-VIEW_COLOUR = "darkblue"
-GAME_FRAME = ZRect(GAME_VIEW)
-GAME_FRAME.inflate_ip(+2, +2)
-FRAME_COLOUR = "white"
+STATUS_RECT = ZRect(0, HEIGHT - 60, WIDTH, 60)
+
+GAME_WINDOW = ZRect(0, STATUS_RECT.height - 1, WIDTH, HEIGHT)
+GAME_WINDOW.background_colour = "darkblue"
+GAME_WINDOW.frame_colour = "white"
 
 class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
 #
-ball = Ball(GAME_VIEW.center, (30, 30))
+ball = Ball(GAME_WINDOW.center, (30, 30))
 ball.colour = "red"
 #
 # The ball moves one step right and one step down each tick
@@ -35,7 +33,7 @@ class Bat(ZRect): pass
 #
 BAT_W = 150
 BAT_H = 15
-bat = Bat(GAME_VIEW.centerx, GAME_VIEW.bottom - BAT_H, BAT_W, BAT_H)
+bat = Bat(GAME_WINDOW.centerx, GAME_WINDOW.bottom - BAT_H, BAT_W, BAT_H)
 bat.colour = "green"
 
 class Brick(ZRect): pass
@@ -44,7 +42,7 @@ class Brick(ZRect): pass
 # and one quarter high as it is wide.
 #
 N_BRICKS = 8
-BRICK_W = GAME_VIEW.width / N_BRICKS
+BRICK_W = GAME_WINDOW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
@@ -56,7 +54,10 @@ BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
 bricks = []
 for n_brick in range(N_BRICKS):
-    brick = Brick(GAME_VIEW.left + (n_brick * BRICK_W), GAME_VIEW.top, BRICK_W, BRICK_H)
+    brick = Brick(
+        GAME_WINDOW.left + (n_brick * BRICK_W), GAME_WINDOW.top, 
+        BRICK_W, BRICK_H
+    )
     brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
     bricks.append(brick)
 
@@ -65,12 +66,11 @@ def draw():
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
-    screen.draw.filled_rect(GAME_VIEW, VIEW_COLOUR)
-    screen.draw.rect(GAME_FRAME, FRAME_COLOUR)
-    screen.draw.text(
-        "Status: %s" % game.status, 
-        topleft = (GAME_VIEW.left, GAME_VIEW.bottom + 4)
-    )
+    screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
+    screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
+    
+    screen.draw.text("Status: %s" % game.status, center=STATUS_RECT.center)
+    
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
     for brick in bricks:
@@ -82,7 +82,7 @@ def on_mouse_move(pos):
     #
     x, y = pos
     bat.centrex = x
-    bat.clamp_ip(GAME_VIEW)
+    bat.clamp_ip(GAME_WINDOW)
 
 def update():
     #
@@ -109,19 +109,19 @@ def update():
     #
     # Bounce the ball off the left or right walls
     #
-    if ball.right >= GAME_VIEW.right or ball.left <= GAME_VIEW.left:
+    if ball.right >= GAME_WINDOW.right or ball.left <= GAME_WINDOW.left:
         ball.direction = -dx, dy
 
     #
     # If the ball hits the bottom of the screen, you lose
     #
-    if ball.bottom >= GAME_VIEW.bottom:
+    if ball.bottom >= GAME_WINDOW.bottom:
         exit()
     
     #
     # Bounce the ball off the top wall
     #
-    if ball.top <= GAME_VIEW.top:
+    if ball.top <= GAME_WINDOW.top:
         ball.direction = dx, -dy
 
     #

@@ -1,12 +1,10 @@
 WIDTH = 640
 HEIGHT = 480
 
-GAME_VIEW = ZRect(0, 0, WIDTH, HEIGHT)
-GAME_VIEW.inflate_ip(-50, -50)
-VIEW_COLOUR = "darkblue"
-GAME_FRAME = ZRect(GAME_VIEW)
-GAME_FRAME.inflate_ip(+2, +2)
-FRAME_COLOUR = "white"
+GAME_WINDOW = ZRect(0, 0, WIDTH, HEIGHT)
+GAME_WINDOW.inflate_ip(-50, -50)
+GAME_WINDOW.background_colour = "darkblue"
+GAME_WINDOW.frame_colour = "white"
 
 class Ball(ZRect): pass
 #
@@ -60,8 +58,9 @@ def draw():
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
-    screen.draw.filled_rect(GAME_VIEW, VIEW_COLOUR)
-    screen.draw.rect(GAME_FRAME, FRAME_COLOUR)
+    screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
+    screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
+    
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
     for brick in bricks:
