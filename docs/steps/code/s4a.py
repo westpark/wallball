@@ -1,4 +1,3 @@
-import itertools
 WIDTH = 640
 HEIGHT = 480
 
@@ -44,7 +43,7 @@ class Brick(ZRect): pass
 N_BRICKS = 8
 BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
-BRICK_COLOURS = itertools.cycle(["purple", "lightgreen", "lightblue", "orange"])
+BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
 # Create <N_BRICKS> blocks, filling the full width of the screen. 
 # Each brick is as high as a quarter of its width, so they remain
@@ -55,7 +54,7 @@ BRICK_COLOURS = itertools.cycle(["purple", "lightgreen", "lightblue", "orange"])
 bricks = []
 for n_brick in range(N_BRICKS):
     brick = Brick(n_brick * BRICK_W, 0, BRICK_W, BRICK_H)
-    brick.colour = next(BRICK_COLOURS)
+    brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
     bricks.append(brick)
 
 def draw():
