@@ -3,6 +3,13 @@
 Wall Ball
 =========
 
+I'm Tim Golden; I'm @tjguk on Twitter and tjguk on Github
+and I'm mail@timgolden.me.uk
+
+These worksheets are available at:
+
+http://wall-ball.readthedocs.io
+
 We're going to build a simple computer game which I've called "Wall Ball".
 The code is broken out into simple steps, each of which adds something
 to the program until the entire game is possible. At each step you can
