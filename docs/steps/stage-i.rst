@@ -1,6 +1,6 @@
-.. _stage1:
+.. _stage-i:
 
-Stage 1: Create the Basic Game
+Stage I: Create the Basic Game
 ------------------------------
 
 In this stage, we will create the basic Wall Ball game in three steps.

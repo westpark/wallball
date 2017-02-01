@@ -30,5 +30,6 @@ else's game will have the particular ideas which yours has. Make it yours.
     overview
     setting_up
     using-these-worksheets
-    steps/stage-1
+    steps/stage-i
+    steps/stage-ii
     pygame-zero
