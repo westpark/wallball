@@ -82,7 +82,7 @@ def on_mouse_move(pos):
     # Ensure that the bat does not move outside the game window.
     #
     x, y = pos
-    bat.centrex = x
+    bat.centerx = x
     bat.clamp_ip(GAME_WINDOW)
 
 def update():

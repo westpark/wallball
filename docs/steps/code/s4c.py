@@ -3,7 +3,7 @@ HEIGHT = 480
 
 class Game(object): pass
 game = Game()
-game.status = "running"
+game.score = 0
 
 #
 # Create a status display, as wide as the screen and 60 pixels high.
@@ -54,7 +54,7 @@ BRICK_W = GAME_WINDOW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 #
-# Create <N_BRICKS> blocks, filling the full width of the game window. 
+# Create <N_BRICKS> blocks, filling the full width of the game window.
 # Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
 #
@@ -63,7 +63,7 @@ BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 bricks = []
 for n_brick in range(N_BRICKS):
     brick = Brick(
-        GAME_WINDOW.left + (n_brick * BRICK_W), GAME_WINDOW.top, 
+        GAME_WINDOW.left + (n_brick * BRICK_W), GAME_WINDOW.top,
         BRICK_W, BRICK_H
     )
     brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
@@ -79,12 +79,12 @@ def draw():
     #
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
-    
+
     #
     # Show the current status, centred inside the status area
     #
-    screen.draw.text("Status: %s" % game.status, center=STATUS_DISPLAY.center)
-    
+    screen.draw.text("Score: %d" % game.score, center=STATUS_DISPLAY.center)
+
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
     for brick in bricks:
@@ -96,7 +96,7 @@ def on_mouse_move(pos):
     # Ensure that the bat does not move outside the game window.
     #
     x, y = pos
-    bat.centrex = x
+    bat.centerx = x
     bat.clamp_ip(GAME_WINDOW)
 
 def update():
@@ -119,8 +119,9 @@ def update():
     to_kill = ball.collidelist(bricks)
     if to_kill >= 0:
         bricks.pop(to_kill)
+        game.score += 1
         ball.direction = dx, -dy
-    
+
     #
     # Bounce the ball off the left or right walls
     #
@@ -132,7 +133,7 @@ def update():
     #
     if ball.bottom >= GAME_WINDOW.bottom:
         exit()
-    
+
     #
     # Bounce the ball off the top wall
     #
