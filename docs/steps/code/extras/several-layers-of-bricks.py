@@ -1,15 +1,6 @@
 WIDTH = 640
 HEIGHT = 480
 
-#
-# Create a game window which can be smaller than the
-# screen with its own background & frame colours.
-#
-GAME_WINDOW = ZRect(0, 0, WIDTH, HEIGHT)
-GAME_WINDOW.inflate_ip(-50, -50)
-GAME_WINDOW.background_colour = "darkblue"
-GAME_WINDOW.frame_colour = "white"
-
 class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
@@ -41,33 +32,29 @@ class Brick(ZRect): pass
 # and one quarter high as it is wide.
 #
 N_BRICKS = 8
+N_ROWS = 3
 BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
-BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
+BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
 #
-# Create <N_BRICKS> blocks, filling the full width of the screen. 
+# Create N_ROWS of N_BRICKS blocks, each row filling the full width of the screen. 
 # Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
 #
 # The brick colours cycle through <BRICK_COLOURS>
 #
 bricks = []
-for n_brick in range(N_BRICKS):
-    brick = Brick(n_brick * BRICK_W, 0, BRICK_W, BRICK_H)
-    brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
-    bricks.append(brick)
+for n_row in range(N_ROWS):
+    for n_brick in range(N_BRICKS):
+        brick = Brick(n_brick * BRICK_W, n_row * BRICK_H, BRICK_W, BRICK_H)
+        brick.colour = BRICK_COLOURS[(n_row + n_brick) % len(BRICK_COLOURS)]
+        bricks.append(brick)
 
 def draw():
     #
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
-    #
-    # Draw the game window and a frame around it
-    #
-    screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
-    screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
-    
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
     for brick in bricks:

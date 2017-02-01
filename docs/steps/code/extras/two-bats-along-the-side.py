@@ -1,15 +1,6 @@
 WIDTH = 640
 HEIGHT = 480
 
-#
-# Create a game window which can be smaller than the
-# screen with its own background & frame colours.
-#
-GAME_WINDOW = ZRect(0, 0, WIDTH, HEIGHT)
-GAME_WINDOW.inflate_ip(-50, -50)
-GAME_WINDOW.background_colour = "darkblue"
-GAME_WINDOW.frame_colour = "white"
-
 class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
@@ -34,6 +25,11 @@ BAT_W = 150
 BAT_H = 15
 bat = Bat(WIDTH / 2, HEIGHT - BAT_H, BAT_W, BAT_H)
 bat.colour = "green"
+left_bat = Bat(0, HEIGHT / 2, BAT_H, BAT_W)
+left_bat.colour = "green"
+right_bat = Bat(WIDTH - BAT_H, HEIGHT / 2, BAT_H, BAT_W)
+right_bat.colour = "green"
+bats = [bat, left_bat, right_bat]
 
 class Brick(ZRect): pass
 #
@@ -43,7 +39,7 @@ class Brick(ZRect): pass
 N_BRICKS = 8
 BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
-BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
+BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
 #
 # Create <N_BRICKS> blocks, filling the full width of the screen. 
 # Each brick is as high as a quarter of its width, so they remain
@@ -62,14 +58,9 @@ def draw():
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
-    #
-    # Draw the game window and a frame around it
-    #
-    screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
-    screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
-    
     screen.draw.filled_rect(ball, ball.colour)
-    screen.draw.filled_rect(bat, bat.colour)
+    for b in bats:
+        screen.draw.filled_rect(b, b.colour)
     for brick in bricks:
         screen.draw.filled_rect(brick, brick.colour)
 
@@ -79,6 +70,8 @@ def on_mouse_move(pos):
     #
     x, y = pos
     bat.centerx = x
+    left_bat.centery = y
+    right_bat.centery = y
 
 def update():
     #
@@ -92,6 +85,10 @@ def update():
     #
     if ball.colliderect(bat):
         ball.direction = dx, -dy
+    if ball.colliderect(left_bat):
+        ball.direction = -dx, dy
+    if ball.colliderect(right_bat):
+        ball.direction = -dx, dy
 
     #
     # If the ball hits a brick, kill that brick and
@@ -103,10 +100,11 @@ def update():
         ball.direction = dx, -dy
     
     #
-    # Bounce the ball off the left or right walls
+    # Now that we have left & right bats, if the ball
+    # hits either wall, you lose.
     #
     if ball.right >= WIDTH or ball.left <= 0:
-        ball.direction = -dx, dy
+        exit()
 
     #
     # If the ball hits the bottom of the screen, you lose

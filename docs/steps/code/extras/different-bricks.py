@@ -1,15 +1,6 @@
 WIDTH = 640
 HEIGHT = 480
 
-#
-# Create a game window which can be smaller than the
-# screen with its own background & frame colours.
-#
-GAME_WINDOW = ZRect(0, 0, WIDTH, HEIGHT)
-GAME_WINDOW.inflate_ip(-50, -50)
-GAME_WINDOW.background_colour = "darkblue"
-GAME_WINDOW.frame_colour = "white"
-
 class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
@@ -43,7 +34,12 @@ class Brick(ZRect): pass
 N_BRICKS = 8
 BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
-BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
+BRICK_TYPES = {
+    "purple" : 1, 
+    "lightgreen" : 2, 
+    "lightblue" : 1, 
+    "orange" : 3
+}
 #
 # Create <N_BRICKS> blocks, filling the full width of the screen. 
 # Each brick is as high as a quarter of its width, so they remain
@@ -52,9 +48,11 @@ BRICK_COLOURS = "purple", "lightgreen", "lightblue", "orange"
 # The brick colours cycle through <BRICK_COLOURS>
 #
 bricks = []
+brick_colours = list(BRICK_TYPES.keys())
 for n_brick in range(N_BRICKS):
     brick = Brick(n_brick * BRICK_W, 0, BRICK_W, BRICK_H)
-    brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
+    brick.colour = brick_colours[n_brick % len(brick_colours)]
+    brick.hardness = BRICK_TYPES[brick.colour]
     bricks.append(brick)
 
 def draw():
@@ -62,17 +60,12 @@ def draw():
     # Clear the screen and place the ball at its current position
     #
     screen.clear()
-    #
-    # Draw the game window and a frame around it
-    #
-    screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
-    screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
-    
     screen.draw.filled_rect(ball, ball.colour)
     screen.draw.filled_rect(bat, bat.colour)
     for brick in bricks:
         screen.draw.filled_rect(brick, brick.colour)
-
+        screen.draw.textbox("%s" % brick.hardness, brick)
+        
 def on_mouse_move(pos):
     #
     # Make the bat follow the horizontal movement of the mouse.
@@ -99,7 +92,10 @@ def update():
     #
     to_kill = ball.collidelist(bricks)
     if to_kill >= 0:
-        bricks.pop(to_kill)
+        brick = bricks[to_kill]
+        brick.hardness -= 1
+        if brick.hardness == 0:
+            bricks.pop(to_kill)
         ball.direction = dx, -dy
     
     #
