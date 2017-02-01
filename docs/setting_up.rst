@@ -4,18 +4,10 @@ Setting Up
 Before we start programming, we need to make sure everything's in place for us to write
 our code and run it.
 
-Create a working directory
---------------------------
+Start a terminal window
+-----------------------
 
 * Run a terminal prompt
-
-* If there isn't one, create a directory called `wallball`::
-
-    mkdir wallball
-
-* Switch to that directory::
-
-    cd wallball
 
 * Make sure pgzrun, the PyGame Zero runner, is available::
     
@@ -30,7 +22,7 @@ Create an empty file
   
   (Or use some other editor which you prefer)
 
-* File > Save As > `~/wallball/<name>.py`
+* File > Save As > `~/<name>.py`
 
   (Don't actually put <name>: put your name in)
 

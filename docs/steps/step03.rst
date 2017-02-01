@@ -33,8 +33,7 @@ What's happening?
   of each brick (`BRICK_H`) a quarter of its width (`BRICK_W`).
 
 * To keep things simple in this step, we just create one brick at the top-left corner
-  of the screen. (And it's blue because... why not?). In the next step we'll get rid
-  of this one brick and create a row of them.
+  of the screen. In the next step we'll get rid of this one brick and create a row of them.
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -80,7 +79,7 @@ and looping round a list of possible colours.
   it treats it as separate from the loop.
 
 * Line 51 selects the brick colour by picking the next colour from the list of
-  colours and then looping back to the beginning when it reaches the end. (That's
+  colours and then looping back to the beginning when it reaches the end. That's
   what the "% len(...)" part is doing. This means that you can have as many or as
   few colours as you like with as many or as few bricks as you like without having
   to match the number of colours with the number of bricks.
