@@ -57,22 +57,21 @@ The Code
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-This is quite a busy step, but a lot of the changes are either affecting
-comments or are mechanical substitutions.
+This is quite a busy step, but a lot of the changes are mechanical substitutions.
 
 *   In short, wherever we were previously assuming that we were playing within
     the whole width of the game screen, we now have to assume that we are
     playing only within the gameplay window. So, for example, checking whether
-    the ball has hit the left-hand edge of the screen (ball.left <= 0) now
+    the ball has hit the left-hand edge of the screen (``ball.left <= 0``) now
     has to check instead whether we've hit the left-hand edge of the gameplay
-    window (ball.left <= GAME_WINDOW.left).
+    window (``ball.left <= GAME_WINDOW.left``).
 
-*   One particular change is to keep the mouse movement within the gameplay
+*   One particular change is to keep the bat within the gameplay
     window. By default, the mouse will stay within the game screen so we
-    didn't have to do anything to stop it going too far to the left or right.
+    didn't have to do anything to stop the bat going too far to the left or right.
     Now, though, if we don't "clamp" the bat within the gameplay window, it would
     start to move outside its borders if the mouse is moved too far. You can
-    see this change in the `on_mouse_move` code.
+    see this change in the ``on_mouse_move`` code.
 
 Change it around
 ~~~~~~~~~~~~~~~~

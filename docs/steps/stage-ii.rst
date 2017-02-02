@@ -14,4 +14,5 @@ to the game: a running score and a welcome screen.
     :maxdepth: 2
 
     step04
-    change-it-all-around-2
+    step05
+    change-it-all-around-ii
