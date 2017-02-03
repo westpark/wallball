@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import codecs
 import difflib
@@ -60,52 +61,81 @@ class LiteralDiff(Directive):
                 'Encoding %r used for reading included file %r seems to '
                 'be wrong, try giving an :encoding: option' %
                 (encoding, filename))]
-    
+
     def output_lines_with_highlight(self, differ_lines):
         """Produce readable output lines from Differ output
-        
+
         The Differ class produces a humanish-readable set of lines,
         indicating by means of a prefix which have been added and
         which removed. When a line has *changed* it can appear as
         a line with a separate line underneath containing markers
         which point to the changed areas.
-        
+
         For the purposes of our output (and because Pygments only
         supports whole-line highlighting) we'll just indicate that
         a line has changed.
-        
+
         If a line has been deleted, comment text will be prepended
         to it to indicate that it should be deleted. Again, because
         Pygments only supports one kind of highlighting. Otherwise
         we might consider using, eg, strikeout for deleted lines.
-        
+
         Yields: (output_line, highlight?) for each line of input
         """
         leading_whitespace = re.compile(r"^\s*")
+        removed_remainder = ""
         for line in differ_lines:
             #
             # Added or removed lines are to be highlighted
             # Removed lines have comment text prepended
             # Other lines are returned unchanged
-            # Lines which are only whitespace and/or comments are shown 
-            #   but not highlighted, even if they've been changed or added
+            # Lines which are only whitespace and/or comments are shown
+            # but not highlighted, even if they've been changed or added
+            # As a special case: lines whose indentation only has been changed
+            # are shown as a single change
             #
             remainder = line[2:]
-            if line.startswith(" "):
-                yield remainder, False
+
+            if removed_remainder:
+                if line.startswith("+"):
+                    #
+                    # If we've seen a removed line, check whether this is
+                    # just an indentation. If it is, show the added line and
+                    # clear the removed line. In every other case we need to
+                    # show the removed line before proceeding
+                    #
+                    if remainder.lstrip() == removed_remainder.lstrip():
+                        is_comment = remainder.lstrip().startswith('#')
+                        yield (" " if is_comment else "\u25ba") + remainder[1:], not is_comment
+                        removed_remainder = ""
+                        continue
+                else:
+                    match = leading_whitespace.match(removed_remainder)
+                    yield match.group() + "## DELETE --> " + removed_remainder.lstrip(), True
+                    removed_remainder = ""
+
+            if line.startswith("+"):
+                yield remainder, True
+            elif line.startswith("-"):
+                removed_remainder = remainder
             elif remainder.lstrip().startswith("#"):
+                yield remainder, False
+            elif line.startswith(" "):
                 yield remainder, False
             elif not remainder.strip():
                 yield remainder, False
-            elif line.startswith("+"):
-                yield remainder, True
-            elif line.startswith("-"):
-                match = leading_whitespace.match(remainder)
-                yield match.group() + "## DELETE --> " + remainder.lstrip(), True
             elif line.startswith("?"):
                 continue
             else:
                 raise RuntimeError("Unexpected character %s at the beginning of the line" % line[0])
+
+        #
+        # If any removed line remains unaccounted for, yield
+        # it here as deleted
+        #
+        if removed_remainder:
+            match = leading_whitespace.match(removed_remainder)
+            yield match.group() + "## DELETE --> " + removed_remainder.lstrip(), True
 
     def run(self):
         document = self.state.document
@@ -176,7 +206,7 @@ class LiteralDiff(Directive):
                 output_lines.append(line)
                 if highlight:
                     hl_lines.append(1 + n)
-            
+
             lines = output_lines[:]
 
         linenostart = self.options.get('lineno-start', 1)

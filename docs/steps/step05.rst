@@ -1,4 +1,4 @@
-.. _step4:
+.. _step5:
 
 Step 5: Start and restart the game
 ==================================
@@ -39,14 +39,8 @@ Step 5b: Have the game pause before starting
 The Code
 ~~~~~~~~
 
-..  note::
-    A lot of the changes in this step are moving existing code along by
-    one level of indentation and making it conditional on the game status.
-    The highlighting algorithm generates a lot of noise with this kind of
-    change so I've turned it off for now. You'll have to work it out
-    by hand!
-
-..  literalinclude:: code/s5b.py
+..  literaldiff:: code/s5b.py
+    :diff: code/s5a.py
     :linenos:
 
 What's happening?
@@ -91,3 +85,8 @@ What's happening?
 
 Change it around
 ~~~~~~~~~~~~~~~~
+
+* Add a "Kill" key which, when pressed, aborts the game and waits to restart.
+
+* In  the status line, display the most recent result (win or lose) before
+  restarting.
