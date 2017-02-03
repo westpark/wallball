@@ -33,39 +33,61 @@ What's happening?
   the score to the left to make room.
 
 
-Step 5b: Move the gameplay inside the gameplay window
------------------------------------------------------
+Step 5b: Have the game pause before starting
+--------------------------------------------
 
 The Code
 ~~~~~~~~
 
-..  literaldiff:: code/s5b.py
-    :diff: code/s5a.py
+..  note::
+    A lot of the changes in this step are moving existing code along by
+    one level of indentation and making it conditional on the game status.
+    The highlighting algorithm generates a lot of noise with this kind of
+    change so I've turned it off for now. You'll have to work it out
+    by hand!
+
+..  literalinclude:: code/s5b.py
     :linenos:
 
 What's happening?
 ~~~~~~~~~~~~~~~~~
 
-This is quite a busy step, but a lot of the changes are mechanical substitutions.
+* We make sure that certain pieces of code only run when the game is Running,
+  not when it's waiting to start.
 
-*   In short, wherever we were previously assuming that we were playing within
-    the whole width of the game screen, we now have to assume that we are
-    playing only within the gameplay window. So, for example, checking whether
-    the ball has hit the left-hand edge of the screen (``ball.left <= 0``) now
-    has to check instead whether we've hit the left-hand edge of the gameplay
-    window (``ball.left <= GAME_WINDOW.left``).
-
-*   One particular change is to keep the bat within the gameplay
-    window. By default, the mouse will stay within the game screen so we
-    didn't have to do anything to stop the bat going too far to the left or right.
-    Now, though, if we don't "clamp" the bat within the gameplay window, it would
-    start to move outside its borders if the mouse is moved too far. You can
-    see this change in the ``on_mouse_move`` code.
+* We add one new piece of functionality: if the game is Starting
+  (ie waiting to start) we wait until the Space key is pressed and
+  then change the status to Running, causing the other parts of the
+  program to kick in.
 
 Change it around
 ~~~~~~~~~~~~~~~~
 
-* Allow the bat to move outside the gameplay window to see what happens
-* Have the bricks occupy a smaller width than the entire width of the
-  gameplay window.
+* Choose a different key to make the game start
 
+* Display a message in the status window to indicate which key should be
+  pressed.
+
+
+Step 5c: Allow the game to restart once it's complete
+-----------------------------------------------------
+
+The Code
+~~~~~~~~
+
+..  literaldiff:: code/s5c.py
+    :diff: code/s5b.py
+    :linenos:
+
+What's happening?
+~~~~~~~~~~~~~~~~~
+
+* We move into its own function all the changes needed to restart the game.
+
+* When Space is pressed, we reset the game before switching to Running mode
+
+* When the game completes (win or lose) we switch back to Starting mode
+  rather than dropping straight out.
+
+Change it around
+~~~~~~~~~~~~~~~~
