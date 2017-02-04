@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
 import codecs
 import difflib
@@ -51,7 +52,7 @@ class LiteralDiff(Directive):
                                            codec_info[3], 'strict') as f:
                 lines = ["%s\n" % line.strip("\r\n") for line in f.readlines()]
                 lines = dedent_lines(lines, self.options.get('dedent'))
-                return lines
+                return [line.rstrip(" ") for line in lines]
         except (IOError, OSError):
             return [document.reporter.warning(
                 'Include file %r not found or reading it failed' % filename,
@@ -109,15 +110,25 @@ class LiteralDiff(Directive):
                         yield (" " if is_comment else "\u25ba") + remainder[1:], not is_comment
                         removed_remainder = ""
                         continue
+
+                match = leading_whitespace.match(removed_remainder)
+                yield match.group() + "## DELETE --> " + removed_remainder.lstrip(), True
+                if line.startswith("-"):
+                    removed_remainder = remainder
                 else:
-                    match = leading_whitespace.match(removed_remainder)
-                    yield match.group() + "## DELETE --> " + removed_remainder.lstrip(), True
                     removed_remainder = ""
 
             if line.startswith("+"):
-                yield remainder, True
+                #
+                # Show the new output, highlighted unless the line
+                # is empty or it is a comment
+                #
+                yield remainder, remainder.lstrip() and not remainder.lstrip().startswith('#')
             elif line.startswith("-"):
-                removed_remainder = remainder
+                if remainder.lstrip().startswith("#"):
+                    removed_remainder = ""
+                else:
+                    removed_remainder = remainder
             elif remainder.lstrip().startswith("#"):
                 yield remainder, False
             elif line.startswith(" "):
@@ -198,10 +209,12 @@ class LiteralDiff(Directive):
             #
             hl_lines = []
             output_lines = []
+            differences = list(difflib.Differ().compare(difflines, lines))
+            # debug step to help work out why highlighting is out
+            with open(os.path.basename(filename) + ".txt", "w") as f:
+                f.writelines(differences)
             for n, (line, highlight) in enumerate(
-                self.output_lines_with_highlight(
-                    difflib.Differ().compare(difflines, lines)
-                )
+                self.output_lines_with_highlight(differences)
             ):
                 output_lines.append(line)
                 if highlight:
