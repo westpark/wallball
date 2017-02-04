@@ -36,7 +36,7 @@ BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
 #
-# Create <N_BRICKS> blocks, filling the full width of the screen. 
+# Create <N_BRICKS> blocks, filling the full width of the screen.
 # Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
 #
@@ -86,7 +86,7 @@ def update():
     if to_kill >= 0:
         bricks.pop(to_kill)
         ball.direction = dx, -dy
-    
+
     #
     # Bounce the ball off the left or right walls
     #
@@ -98,7 +98,7 @@ def update():
     #
     if ball.bottom >= HEIGHT:
         exit()
-    
+
     #
     # Bounce the ball off the top wall
     #

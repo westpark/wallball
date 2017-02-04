@@ -65,7 +65,7 @@ def update():
     #
     if ball.bottom >= HEIGHT:
         exit()
-    
+
     #
     # Bounce the ball off the top wall
     #
