@@ -17,6 +17,12 @@ we'll add a status line and keep track of the score.
 Step 4a: Create a gameplay window
 ------------------------------------
 
+..  note::
+
+    At the end of this step, the game will still be showing across
+    the entire window but the new gameplay window will show where
+    it will be showing at the end of the next step.
+
 The Code
 ~~~~~~~~
 
@@ -44,7 +50,7 @@ Change it around
   in each direction is just a shortcut for playing with its `width` and
   `height` and `x` and `y` attributes. You can change them directly.
 
-Step 3b: Move the gameplay inside the gameplay window
+Step 4b: Move the gameplay inside the gameplay window
 -----------------------------------------------------
 
 The Code
