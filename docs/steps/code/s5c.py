@@ -86,11 +86,14 @@ def draw():
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
 
-    #
-    # Show the current status, centred inside the status area
-    #
-    screen.draw.text("Score: %d" % game.score, left=STATUS_DISPLAY.left + 4, centery=STATUS_DISPLAY.centery)
-    screen.draw.text("Status: %s" % game.status, right=STATUS_DISPLAY.right - 4, centery=STATUS_DISPLAY.centery)
+    if game.status == "Starting":
+        screen.draw.text("Press SPACE to start", center=STATUS_DISPLAY.center)
+    elif game.status == "Running":
+        #
+        # Show the current status, centred inside the status area
+        #
+        screen.draw.text("Score: %d" % game.score, left=STATUS_DISPLAY.left + 4, centery=STATUS_DISPLAY.centery)
+        screen.draw.text("Status: %s" % game.status, right=STATUS_DISPLAY.right - 4, centery=STATUS_DISPLAY.centery)
 
     if game.status == "Running":
         screen.draw.filled_rect(ball, ball.colour)
