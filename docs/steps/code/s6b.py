@@ -178,7 +178,7 @@ def update():
         to_kill = ball.collidelist(bricks)
         if to_kill >= 0:
             bricks.pop(to_kill)
-            game.score += 1
+            game.score += game.score_per_brick
             ball.direction = dx, -dy
 
         #

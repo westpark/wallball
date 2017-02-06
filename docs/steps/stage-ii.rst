@@ -15,4 +15,5 @@ to the game: a running score and a welcome screen.
 
     step04
     step05
+    step06
     change-it-all-around-ii
