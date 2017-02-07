@@ -209,10 +209,16 @@ class LiteralDiff(Directive):
             #
             hl_lines = []
             output_lines = []
+            #
+            # Materialise the differences because we may want to print them
+            # out as well as consuming them via the output highlighter
+            #
             differences = list(difflib.Differ().compare(difflines, lines))
-            # debug step to help work out why highlighting is out
-            with open(os.path.basename(filename) + ".txt", "w") as f:
-                f.writelines(differences)
+            #
+            # Debug step to help work out why highlighting is out
+            #
+            ## with open(os.path.basename(filename) + ".txt", "w") as f:
+            ##    f.writelines(differences)
             for n, (line, highlight) in enumerate(
                 self.output_lines_with_highlight(differences)
             ):
