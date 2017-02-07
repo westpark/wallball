@@ -43,7 +43,9 @@ What's happening?
 
 This is the easiest of the parts of step 6: we're simply using the ``game``
 object to keep track of how much each brick will currently score when it's
-knocked out, and we're showing that number on each brick.
+knocked out, and we're showing that number on each brick. When a brick is
+knocked out, the game score increases by that brick's score. (Which is always
+1!)
 
 Change it around
 ~~~~~~~~~~~~~~~~
@@ -69,6 +71,10 @@ What's happening?
 * We create three levels of difficulty, specifying for each one how fast
   the ball moves and how big it is, and how big the bat is. For now, we're
   going to the use the level counter as the brick score.
+
+  *NB In Python, the first item in a list is Number 0, the second item is
+  Number 1 and so on. There are good reasons for this, but it takes some
+  getting used to.*
 
 * When the mouse buttons are pressed, we go down or up through the levels,
   not allowing the level to go below zero nor to go beyond the levels we've
@@ -96,30 +102,3 @@ Change it around
   Likewise allow the left- and right-arrow keys to control the bat.
 
 
-Step 5c: Allow the game to restart once it's complete
------------------------------------------------------
-
-The Code
-~~~~~~~~
-
-..  literaldiff:: code/s5c.py
-    :diff: code/s5b.py
-    :linenos:
-
-What's happening?
-~~~~~~~~~~~~~~~~~
-
-* We move into its own function all the changes needed to restart the game.
-
-* When Space is pressed, we reset the game before switching to Running mode
-
-* When the game completes (win or lose) we switch back to Starting mode
-  rather than dropping straight out.
-
-Change it around
-~~~~~~~~~~~~~~~~
-
-* Add a "Kill" key which, when pressed, aborts the game and waits to restart.
-
-* In  the status line, display the most recent result (win or lose) before
-  restarting.
