@@ -20,6 +20,8 @@ This is easy to do and makes the game quite a bit more tricky. The idea is to ma
 it so the ball doesn't bounce off the side walls: you have to deflect it with a bat.
 So you need a vertical bat on each side wall which is also controlled by the mouse.
 
+:ref:`Look here <two-bats-along-the-side>` for a possible approach
+
 Have more than one ball
 -----------------------
 
@@ -34,6 +36,8 @@ Have two bats along the bottom
 
 Even if just one player you could have two bats, one which only moves when the
 left mouse button is pressed, the other when the right button is pressed.
+
+:ref:`Look here <two-bats-along-the-bottom>` for a possible approach
 
 Have different kinds of bricks
 ------------------------------
