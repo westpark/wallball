@@ -35,13 +35,13 @@ N_BRICKS = 8
 BRICK_W = WIDTH / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_TYPES = {
-    "purple" : 1, 
-    "lightgreen" : 2, 
-    "lightblue" : 1, 
+    "purple" : 1,
+    "lightgreen" : 2,
+    "lightblue" : 1,
     "orange" : 3
 }
 #
-# Create <N_BRICKS> blocks, filling the full width of the screen. 
+# Create <N_BRICKS> blocks, filling the full width of the screen.
 # Each brick is as high as a quarter of its width, so they remain
 # proportional as the number of blocks or the screen size changes.
 #
@@ -65,7 +65,7 @@ def draw():
     for brick in bricks:
         screen.draw.filled_rect(brick, brick.colour)
         screen.draw.textbox("%s" % brick.hardness, brick)
-        
+
 def on_mouse_move(pos):
     #
     # Make the bat follow the horizontal movement of the mouse.
@@ -97,7 +97,7 @@ def update():
         if brick.hardness == 0:
             bricks.pop(to_kill)
         ball.direction = dx, -dy
-    
+
     #
     # Bounce the ball off the left or right walls
     #
@@ -109,7 +109,7 @@ def update():
     #
     if ball.bottom >= HEIGHT:
         exit()
-    
+
     #
     # Bounce the ball off the top wall
     #

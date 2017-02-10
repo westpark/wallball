@@ -11,6 +11,8 @@ Have several layers of bricks
 
 The game only has one wall of bricks at the moment. Try adding some more walls.
 
+:ref:`Look here <several-layers-of-bricks>` for a possible approach
+
 Give each side wall a bat
 -------------------------
 
@@ -25,6 +27,8 @@ You could have two balls, perhaps one running faster, the other slower. Or one b
 one smaller. These both have to be deflected in the usual way. Perhaps one ball can
 only knock out certain bricks.
 
+:ref:`Look here <more-than-one-ball>` for a possible approach
+
 Have two bats along the bottom
 ------------------------------
 
@@ -37,6 +41,8 @@ Have different kinds of bricks
 You could give the bricks different properties: one might only be knocked out
 after three hits. Perhaps one hit weakens it and it changes to a weaker 2-hit
 brick.
+
+:ref:`Look here <different-bricks>` for a possible approach
 
 Switch around the direction of play
 -----------------------------------
