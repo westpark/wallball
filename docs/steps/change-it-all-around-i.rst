@@ -54,3 +54,4 @@ Switch around the direction of play
 Have the wall of bricks along the left edge of the screen and the bat along
 the right. Or a wall in the middle of the screen with bats along each edge.
 
+:ref:`Look here <switch-the-direction-of-play>` for a possible approach
