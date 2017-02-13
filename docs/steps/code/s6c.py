@@ -17,6 +17,7 @@ game.score = 0
 game.status = "Starting"
 game.score_per_brick = 1
 game.current_level = 0
+game.scoreboard = []
 
 #
 # Create a status display, as wide as the screen and 60 pixels high.
@@ -104,6 +105,10 @@ def set_up_level():
     bat.height = bat.width / 10
     game.score_per_brick = 1 + game.current_level
 
+def draw_scoreboard():
+    top_10_scores = sorted(game.scoreboard, reverse=True)[:10]
+
+
 def draw():
     #
     # Clear the screen, draw the game window and place the ball at its current position
@@ -123,6 +128,7 @@ def draw():
         # If the game is waiting to start indicate how to start
         #
         screen.draw.text("Press SPACE to start", center=STATUS_DISPLAY.center)
+
     elif game.status == "Running":
         #
         # If the game is running show the current status, centred inside the status area
@@ -133,7 +139,13 @@ def draw():
     #
     # Fill in the gameplay window
     #
-    if game.status == "Running":
+    if game.status == "Starting":
+        #
+        # If the game is waiting to start, show the current high scoreboard
+        #
+        draw_scoreboard()
+
+    elif game.status == "Running":
         screen.draw.filled_rect(ball, ball.colour)
         screen.draw.filled_rect(bat, bat.colour)
         for brick in bricks:
@@ -218,4 +230,5 @@ def update():
         # If there are no bricks left, you win
         #
         if not bricks:
+            game.scoreboard.append(game.score)
             game.status = "Starting"
