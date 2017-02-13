@@ -68,17 +68,23 @@ BRICK_W = GAME_WINDOW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
 #
-# Create <N_BRICKS> blocks, filling the full width of the game window.
-# Each brick is as high as a quarter of its width, so they remain
-# proportional as the number of blocks or the screen size changes.
-#
 # The brick colours cycle through <BRICK_COLOURS>
 #
 bricks = []
 
 def reset_game():
+    #
+    # At the beginning of the game, centre the ball on the game window
+    # and position the bat halfway across the game window and and sliding
+    # along its bottom edge.
+    #
     ball.center = GAME_WINDOW.center
     bat.center = (GAME_WINDOW.centerx, GAME_WINDOW.bottom - BAT_H)
+    #
+    # Create <N_BRICKS> blocks, filling the full width of the game window.
+    # Each brick is as high as a quarter of its width, so they remain
+    # proportional as the number of blocks or the screen size changes.
+    #
     bricks.clear()
     for n_brick in range(N_BRICKS):
         brick = Brick(
@@ -109,15 +115,24 @@ def draw():
     screen.draw.filled_rect(GAME_WINDOW, GAME_WINDOW.background_colour)
     screen.draw.rect(GAME_WINDOW.inflate(+2, +2), GAME_WINDOW.frame_colour)
 
+    #
+    # Fill in the status window
+    #
     if game.status == "Starting":
+        #
+        # If the game is waiting to start indicate how to start
+        #
         screen.draw.text("Press SPACE to start", center=STATUS_DISPLAY.center)
     elif game.status == "Running":
         #
-        # Show the current status, centred inside the status area
+        # If the game is running show the current status, centred inside the status area
         #
         screen.draw.text("Score: %d" % game.score, left=STATUS_DISPLAY.left + 4, centery=STATUS_DISPLAY.centery)
         screen.draw.text("Status: %s" % game.status, right=STATUS_DISPLAY.right - 4, centery=STATUS_DISPLAY.centery)
 
+    #
+    # Fill in the gameplay window
+    #
     if game.status == "Running":
         screen.draw.filled_rect(ball, ball.colour)
         screen.draw.filled_rect(bat, bat.colour)
