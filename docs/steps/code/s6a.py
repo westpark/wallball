@@ -105,8 +105,16 @@ def draw():
         #
         # If the game is running show the current status, centred inside the status area
         #
-        screen.draw.text("Score: %d" % game.score, left=STATUS_DISPLAY.left + 4, centery=STATUS_DISPLAY.centery)
-        screen.draw.text("Status: %s" % game.status, right=STATUS_DISPLAY.right - 4, centery=STATUS_DISPLAY.centery)
+        screen.draw.text(
+            "Score: %d" % game.score,
+            left=STATUS_DISPLAY.left + 4,
+            centery=STATUS_DISPLAY.centery
+        )
+        screen.draw.text(
+            "Status: %s" % game.status,
+            right=STATUS_DISPLAY.right - 4,
+            centery=STATUS_DISPLAY.centery
+        )
 
     #
     # Fill in the gameplay window

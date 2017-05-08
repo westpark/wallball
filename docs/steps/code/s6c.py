@@ -64,7 +64,7 @@ class Brick(ZRect): pass
 # The brick is a rectangle one eight the width of the game window
 # and one quarter high as it is wide.
 #
-N_BRICKS = 8
+N_BRICKS = 3
 BRICK_W = GAME_WINDOW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
@@ -95,6 +95,7 @@ def reset_game():
         brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
         bricks.append(brick)
     game.current_level = 0
+    game.score = 0
     set_up_level()
 
 def set_up_level():
@@ -107,7 +108,21 @@ def set_up_level():
 
 def draw_scoreboard():
     top_10_scores = sorted(game.scoreboard, reverse=True)[:10]
+    scoreline_height = GAME_WINDOW.height / 12
 
+    scoreline_box = ZRect(
+        GAME_WINDOW.left, GAME_WINDOW.top,
+        GAME_WINDOW.width, scoreline_height
+    )
+    screen.draw.textbox("Top 10 Scores", scoreline_box)
+
+    for n, score in enumerate(top_10_scores):
+        scoreline_y_offset = (2 + n) * scoreline_height;
+        scoreline_box = ZRect(
+            GAME_WINDOW.left, GAME_WINDOW.top + scoreline_y_offset,
+            GAME_WINDOW.width, scoreline_height
+        )
+        screen.draw.textbox("%1d - %s" % (1 + n, score), scoreline_box)
 
 def draw():
     #
@@ -133,8 +148,16 @@ def draw():
         #
         # If the game is running show the current status, centred inside the status area
         #
-        screen.draw.text("Score: %d" % game.score, left=STATUS_DISPLAY.left + 4, centery=STATUS_DISPLAY.centery)
-        screen.draw.text("Status: %s" % game.status, right=STATUS_DISPLAY.right - 4, centery=STATUS_DISPLAY.centery)
+        screen.draw.text(
+            "Score: %d" % game.score,
+            left=STATUS_DISPLAY.left + 4,
+            centery=STATUS_DISPLAY.centery
+        )
+        screen.draw.text(
+            "Status: %s" % game.status,
+            right=STATUS_DISPLAY.right - 4,
+            centery=STATUS_DISPLAY.centery
+        )
 
     #
     # Fill in the gameplay window
