@@ -102,3 +102,43 @@ Change it around
   Likewise allow the left- and right-arrow keys to control the bat.
 
 
+Step 6c: Show the top 10 scores
+-------------------------------
+
+The Code
+~~~~~~~~
+
+..  literaldiff:: code/s6c.py
+    :diff: code/s6b.py
+    :linenos:
+
+What's happening?
+~~~~~~~~~~~~~~~~~
+
+* As part of the overall `game` object we set up a scoreboard, initially empty.
+  The `scoreboard` object is, for the moment, a Python list to which we will
+  add the score as each game completes.
+
+* If the game is waiting to start (ie the status is "Starting") then show the
+  scoreboard in place of the gameplay window. We're keeping this simple: since
+  we know there will be no more than 10 entries, we're dividing the window
+  into 12 slices, the bottom 10 of which will contain the scores.
+
+* Finally, when each game completes -- when no bricks remain -- then take
+  the score at that point and add it to the list of scores.
+
+Change it around
+~~~~~~~~~~~~~~~~
+
+*   Do a Top 5 or a Top 20 rather than a Top 10
+
+    **Hint:** Within the `draw_scoreboard` function, create a variable
+    which specifies how many scores you want to show; use that, suitably
+    adjusted, whenever an exact number appears through the rest of the
+    function.
+
+*   Keep track of the time as well as the score to provide a tie-breaker
+
+    **Hint:** Instead of holding the score as a number in the `scoreboard`
+    object, hold a 2-tuple instead containing the score and the number of
+    seconds.
