@@ -82,6 +82,8 @@ def reset_game():
         brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
         bricks.append(brick)
 
+    game.score = 0
+
 def draw():
     #
     # Clear the screen, draw the game window and place the ball at its current position

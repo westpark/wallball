@@ -64,7 +64,7 @@ class Brick(ZRect): pass
 # The brick is a rectangle one eight the width of the game window
 # and one quarter high as it is wide.
 #
-N_BRICKS = 3
+N_BRICKS = 8
 BRICK_W = GAME_WINDOW.width / N_BRICKS
 BRICK_H = BRICK_W / 4
 BRICK_COLOURS = ["purple", "lightgreen", "lightblue", "orange"]
@@ -94,8 +94,9 @@ def reset_game():
         )
         brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
         bricks.append(brick)
-    game.current_level = 0
+
     game.score = 0
+    game.current_level = 0
     set_up_level()
 
 def set_up_level():

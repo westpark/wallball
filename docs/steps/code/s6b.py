@@ -93,6 +93,8 @@ def reset_game():
         )
         brick.colour = BRICK_COLOURS[n_brick % len(BRICK_COLOURS)]
         bricks.append(brick)
+
+    game.score = 0
     game.current_level = 0
     set_up_level()
 
