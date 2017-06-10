@@ -84,8 +84,16 @@ def draw():
     #
     # Show the current status, centred inside the status area
     #
-    screen.draw.text("Score: %d" % game.score, left=STATUS_DISPLAY.left + 4, centery=STATUS_DISPLAY.centery)
-    screen.draw.text("Status: %s" % game.status, right=STATUS_DISPLAY.right - 4, centery=STATUS_DISPLAY.centery)
+    screen.draw.text(
+        "Score: %d" % game.score,
+        left=STATUS_DISPLAY.left + 4,
+        centery=STATUS_DISPLAY.centery
+    )
+    screen.draw.text(
+        "Status: %s" % game.status,
+        right=STATUS_DISPLAY.right - 4,
+        centery=STATUS_DISPLAY.centery
+    )
 
     if game.status == "Running":
         screen.draw.filled_rect(ball, ball.colour)
