@@ -14,7 +14,8 @@ class Ball(ZRect): pass
 #
 # The ball is a red square halfway across the game screen
 #
-ball = Ball(WIDTH / 2, HEIGHT / 2, 30, 30)
+ball = Ball(0, 0, 100, 100)
+ball.center = WIDTH / 2, HEIGHT / 2
 ball.colour = "red"
 #
 # The ball moves one step right and one step down each tick
