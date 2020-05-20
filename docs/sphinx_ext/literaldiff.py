@@ -12,7 +12,7 @@ from sphinx import addnodes
 from sphinx.locale import _
 from sphinx.util import parselinenos
 from sphinx.util.nodes import set_source_info
-from sphinx.directives.code import dedent_lines, string_types
+from sphinx.directives.code import dedent_lines
 
 class LiteralDiff(Directive):
     """
@@ -187,7 +187,7 @@ class LiteralDiff(Directive):
 
         lines = self.read_with_encoding(filename, document,
                                         codec_info, encoding)
-        if lines and not isinstance(lines[0], string_types):
+        if lines and not isinstance(lines[0], str):
             return lines
 
         diffsource = self.options.get('diff')
@@ -200,7 +200,7 @@ class LiteralDiff(Directive):
 
             difflines = self.read_with_encoding(fulldiffsource, document,
                                                 codec_info, encoding)
-            if not isinstance(difflines[0], string_types):
+            if not isinstance(difflines[0], str):
                 return difflines
 
             #

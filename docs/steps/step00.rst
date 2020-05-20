@@ -6,13 +6,17 @@ Step 0: Create an empty game
 In this step we're going to create a game which does nothing, just to make
 sure we have everything ready to run.
 
+**At the end of Step 0 you will see:** a blank window with a title bar saying
+"PyGame Zero Game" and the usual Minimize / Maximize / Close buttons. If you
+click the [X] button or press `Ctrl-Q` the window will close.
+
 The Code
 ~~~~~~~~
 
 .. literalinclude:: code/s0.py
 
 That's it. You just need an empty file. That's the simplest possible "game"
-you can build with PyGame Zero. 
+you can build with PyGame Zero.
 
 What's happening here?
 ~~~~~~~~~~~~~~~~~~~~~~

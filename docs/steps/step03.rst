@@ -11,6 +11,9 @@ player has won.
 Step 3a: Put one brick on the screen
 ------------------------------------
 
+**At the end of Step 3a you will see:** one blue brick attached to the ceiling.
+The ball will ignore it.
+
 The Code
 ~~~~~~~~
 
@@ -25,8 +28,8 @@ What's happening?
   Later, we'll use it like a potato print to generate several bricks in a row.
 
 * Since we want the bricks to fit evenly across the screen, we decide how many we want
-  (`N_BRICKS`) and then divide the screen width (`WIDTH`) by that many to get the width 
-  of each brick (`BRICK_W`). We could have done it the other way round: decide how wide 
+  (`N_BRICKS`) and then divide the screen width (`WIDTH`) by that many to get the width
+  of each brick (`BRICK_W`). We could have done it the other way round: decide how wide
   our brick should be and then seen how many could fit across the screen.
 
 * To keep the brick proportions similar if we change the screen size, we make the height
@@ -47,6 +50,9 @@ Change it around
 Step 3b: Put eight bricks across the screen
 -------------------------------------------
 
+**At the end of Step 3a you will see:** eight bricks attached to the ceiling,
+each in a different colour. The ball will still ignore them.
+
 The Code
 ~~~~~~~~
 
@@ -65,7 +71,7 @@ and looping round a list of possible colours.
   is quite long (cf https://en.wikipedia.org/wiki/X11_color_names) but you can
   guess some obvious ones, and there's a shorter list in the PyGame Zero section at
   the end of these worksheets.
-  
+
 * From lines 46 to 52 we are creating a list of bricks. Each brick is made from the
   `Brick` class we created previously, but each one has a different position and a
   different colour.
@@ -83,7 +89,7 @@ and looping round a list of possible colours.
   what the "% len(...)" part is doing. This means that you can have as many or as
   few colours as you like with as many or as few bricks as you like without having
   to match the number of colours with the number of bricks.
-  
+
   The "%" thing is called a modulo operator. It gives you what's left over when
   you divide something by something else.
 
@@ -104,6 +110,8 @@ Change it around
 Step 3c: Have the ball knock out bricks until none is left
 ----------------------------------------------------------
 
+**At the end of Step 3c you will see:** the ball knock out the bricks it hits
+
 The Code
 ~~~~~~~~
 
@@ -117,12 +125,12 @@ What's happening?
 * `collidelist` checks whether one rectangle has collided with *any* of a list of
   rectangles. It returns the position in the list of the rectangle which was the
   point of collision. If there was no collision, it returns -1.
-  
+
   Since our ball is a rectangle and our bricks are a list of rectangles, this gives
   us an easy way to work out which brick was hit by the ball (if any). If one is
   hit (`to_kill >= 0`) we drop that brick from our list (`bricks.pop`) and bounce
   the ball.
-  
+
   Now that the brick is not in the list, it will not be drawn the next time we
   redraw the screen and it will appear to have knocked out.
 

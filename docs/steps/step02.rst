@@ -13,6 +13,9 @@ reaches the bottom edge of the screen.
 Step 2a: Put a bat on the screen
 --------------------------------
 
+**At the end of Step 2a you will see:** a green bat along the bottom of the
+screen. It won't move yet, and it won't stop the ball.
+
 The Code
 ~~~~~~~~
 
@@ -25,7 +28,7 @@ What's happening?
 
 * We make the bat in the same way as the ball: a coloured rectangle, only with a different
   shape and a different colour.
-  
+
 * We draw it in the same way as well, inside the ``draw`` function.
 
 Change it around
@@ -37,6 +40,9 @@ Change it around
 
 Step 2b: Control the bat with the mouse
 ---------------------------------------
+
+**At the end of Step 2b you will see:** the bat being moved by the mouse. It
+still won't stop the ball which will bounce off the floor
 
 The Code
 ~~~~~~~~
@@ -51,7 +57,7 @@ What's happening?
 * When the mouse is moved, PyGame Zero automatically calls a function called
   `on_mouse_move` and passes in the current position of the mouse. We're only
   interested in the horizontal movement, so we pick out the x-coordinate.
-  
+
 * By setting the bat's x-centre to the same as the mouse's x-coordinate whenever
   the mouse moves, we make the bat move horizontally with the mouse.
 
@@ -61,11 +67,11 @@ Change it around
 * Make the bat move left & right according to the up and down movement of the mouse
 
   **Hint:** The mouse position has two components: x & y -- guess which one you want to use?
-  
+
 * Make the bat move up and down as well as left and right
 
   **Hint:** The bat -- like any PyGame rectangle -- has a centerx and a centery attribute
-  
+
 * Make the bat move only when one of the buttons is pressed
 
   **Hint:** As well as an :func:`on_mouse_move` event, PyGame Zero has :func:`on_mouse_down`
@@ -73,6 +79,9 @@ Change it around
 
 Step 2c: Make the ball bounce off the bat
 -----------------------------------------
+
+**At the end of Step 2c you will see:** the ball bouncing off the bat. The ball
+can still bounce off the floor
 
 The Code
 ~~~~~~~~
@@ -96,11 +105,14 @@ Change it around
 
   **Hint:** At the moment, we only change the ball's y-direction when we
   detect a collision with the bat.
-  
+
 * Make the ball go randomly faster or slower when it hits the bat
 
 Step 2d: The player dies if the ball hits the bottom of the screen
 ------------------------------------------------------------------
+
+**At the end of Step 2d you will see:** the game end if the ball hits the
+floor instead of bouncing off the bat
 
 The Code
 ~~~~~~~~

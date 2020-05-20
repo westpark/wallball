@@ -9,6 +9,10 @@ then to make it move, bouncing off each of the walls when it hits them.
 Step 1a: Put a ball on the screen
 ---------------------------------
 
+**At the end of Step 1a you will see:** a redsquare representing the ball
+in the middle of the screen.
+
+
 The Code
 ~~~~~~~~
 
@@ -55,6 +59,9 @@ Change it around
 Step 1b: Make the ball move
 ---------------------------
 
+**At the end of Step 1b you will see:** the red ball moving towards the bottom right
+of the screen until it disappears off the edge.
+
 The Code
 ~~~~~~~~
 
@@ -89,6 +96,9 @@ Change it around
 
 Step 1c: Make the ball bounce off the walls
 -------------------------------------------
+
+**At the end of Step 1c you will see:** the red ball moving around the screen
+diagonally, bouncing off each wall.
 
 The Code
 ~~~~~~~~
