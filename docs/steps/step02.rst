@@ -16,6 +16,9 @@ Step 2a: Put a bat on the screen
 **At the end of Step 2a you will see:** a green bat along the bottom of the
 screen. It won't move yet, and it won't stop the ball.
 
+.. image:: images/step-s2a.gif
+   :scale: 66 %
+
 The Code
 ~~~~~~~~
 
@@ -43,6 +46,9 @@ Step 2b: Control the bat with the mouse
 
 **At the end of Step 2b you will see:** the bat being moved by the mouse. It
 still won't stop the ball which will bounce off the floor
+
+.. image:: images/step-s2b.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~
@@ -83,6 +89,9 @@ Step 2c: Make the ball bounce off the bat
 **At the end of Step 2c you will see:** the ball bouncing off the bat. The ball
 can still bounce off the floor
 
+.. image:: images/step-s2c.gif
+   :scale: 66 %
+
 The Code
 ~~~~~~~~
 
@@ -113,6 +122,9 @@ Step 2d: The player dies if the ball hits the bottom of the screen
 
 **At the end of Step 2d you will see:** the game end if the ball hits the
 floor instead of bouncing off the bat
+
+.. image:: images/step-s2d.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~

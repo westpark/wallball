@@ -12,6 +12,9 @@ Step 1a: Put a ball on the screen
 **At the end of Step 1a you will see:** a redsquare representing the ball
 in the middle of the screen.
 
+.. image:: images/step-s1a.gif
+   :scale: 66 %
+
 
 The Code
 ~~~~~~~~
@@ -62,6 +65,9 @@ Step 1b: Make the ball move
 **At the end of Step 1b you will see:** the red ball moving towards the bottom right
 of the screen until it disappears off the edge.
 
+.. image:: images/step-s1b.gif
+   :scale: 66 %
+
 The Code
 ~~~~~~~~
 
@@ -100,6 +106,8 @@ Step 1c: Make the ball bounce off the walls
 **At the end of Step 1c you will see:** the red ball moving around the screen
 diagonally, bouncing off each wall.
 
+.. image:: images/step-s1c.gif
+   :scale: 66 %
 The Code
 ~~~~~~~~
 

@@ -14,6 +14,9 @@ Step 3a: Put one brick on the screen
 **At the end of Step 3a you will see:** one blue brick attached to the ceiling.
 The ball will ignore it.
 
+.. image:: images/step-s3a.gif
+   :scale: 66 %
+
 The Code
 ~~~~~~~~
 
@@ -52,6 +55,9 @@ Step 3b: Put eight bricks across the screen
 
 **At the end of Step 3a you will see:** eight bricks attached to the ceiling,
 each in a different colour. The ball will still ignore them.
+
+.. image:: images/step-s3b.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~
@@ -111,6 +117,9 @@ Step 3c: Have the ball knock out bricks until none is left
 ----------------------------------------------------------
 
 **At the end of Step 3c you will see:** the ball knock out the bricks it hits
+
+.. image:: images/step-s3c.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~
