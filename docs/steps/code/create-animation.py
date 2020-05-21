@@ -13,7 +13,7 @@ def remove_intermediate_images(step):
 def main(step):
     if not os.path.exists(IMAGES_DIRPATH): os.mkdir(IMAGES_DIRPATH)
     remove_intermediate_images(step)
-    subprocess.call([".venv\scripts\pgzrun", "%s.py" % step])
+    subprocess.call(["pgzrun", "%s.py" % step])
     files = sorted(glob.glob(os.path.join(IMAGES_DIRPATH, "%s.*.png" % step)))
     try:
         frames = [imageio.imread(f) for f in files]
