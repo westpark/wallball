@@ -68,12 +68,11 @@ def on_mouse_move(pos, buttons):
     # Make the bat follow the horizontal movement of the mouse.
     #
     x, y = pos
-    left, middle, right = buttons
-    if left:
+    if mouse.LEFT in buttons:
         left_bat.centerx = x
         if left_bat.colliderect(right_bat):
             left_bat.right = right_bat.left - 1
-    if right:
+    if mouse.RIGHT in buttons:
         right_bat.centerx = x
         if right_bat.colliderect(left_bat):
             right_bat.left = left_bat.right - 1
