@@ -73,3 +73,12 @@ the right. Or a wall in the middle of the screen with bats along each edge.
    :scale: 66 %
 
 :ref:`Look here <switch-the-direction-of-play>` for a possible approach
+
+Have the ball bounce differently from the left or right side of the bat
+-----------------------------------------------------------------------
+
+When the ball hits the left side of the bat, it bounces up to the left
+regardless of which direction it came from. Likewise when it hits the
+right of the bat it bounces to the right
+
+:ref:`Look here <left-and-right-side-of-bat>` for a possible approach

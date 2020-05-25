@@ -31,6 +31,9 @@ In this step, we're going to add several gameplay elements:
 Step 6a: Show the scores on each brick
 --------------------------------------
 
+.. image:: images/step-s6a.gif
+   :scale: 66 %
+
 The Code
 ~~~~~~~~
 
@@ -57,6 +60,9 @@ Change it around
 
 Step 6b: Make the game harder / easier
 --------------------------------------
+
+.. image:: images/step-s6b.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~

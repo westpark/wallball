@@ -17,6 +17,9 @@ movements etc.
 Step 5a: Add and display a Running status
 -----------------------------------------
 
+.. image:: images/step-s5a.gif
+   :scale: 66 %
+
 The Code
 ~~~~~~~~
 
@@ -35,6 +38,9 @@ What's happening?
 
 Step 5b: Have the game pause before starting
 --------------------------------------------
+
+.. image:: images/step-s5b.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~
@@ -65,6 +71,9 @@ Change it around
 
 Step 5c: Allow the game to restart once it's complete
 -----------------------------------------------------
+
+.. image:: images/step-s5c.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~

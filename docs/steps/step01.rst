@@ -108,6 +108,7 @@ diagonally, bouncing off each wall.
 
 .. image:: images/step-s1c.gif
    :scale: 66 %
+
 The Code
 ~~~~~~~~
 

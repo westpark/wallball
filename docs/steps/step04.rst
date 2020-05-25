@@ -23,6 +23,10 @@ Step 4a: Create a gameplay window
     the entire window but the new gameplay window will show where
     it will be showing at the end of the next step.
 
+.. image:: images/step-s4a.gif
+   :scale: 66 %
+
+
 The Code
 ~~~~~~~~
 
@@ -52,6 +56,9 @@ Change it around
 
 Step 4b: Move the gameplay inside the gameplay window
 -----------------------------------------------------
+
+.. image:: images/step-s4b.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~
@@ -89,6 +96,9 @@ Change it around
 
 Step 4c: Add a running score count
 ----------------------------------
+
+.. image:: images/step-s4c.gif
+   :scale: 66 %
 
 The Code
 ~~~~~~~~
